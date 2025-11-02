@@ -4,6 +4,7 @@ import cors from "cors";
 import userRouter from "./routes/routes";
 import cookieParser from "cookie-parser";
 import { connectedDB } from "./db/db";
+import projectRouter from "./routes/projectRoutes";
 dotenv.config();
 const app = express();
 connectedDB();
@@ -18,6 +19,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/users/api", userRouter);
+app.use("/api/projects", projectRouter);
 
 // Current port
 const port = process.env.PORT || 3000;

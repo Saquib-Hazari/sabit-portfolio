@@ -1,0 +1,6 @@
+.todo
+*.todo
+
+vscode/
+dist/
+DS_Store/
