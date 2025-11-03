@@ -10,21 +10,29 @@ const Footer = () => {
     { path: "/services", label: "Services" },
   ];
   return (
-    <Box p={"20"}>
-      <Flex gap={10} justifyContent={"center"} alignItems={"center"}>
+    <Box as="footer" paddingTop={40} bottom={0}>
+      <Flex
+        gap={10}
+        justifyContent={"center"}
+        alignItems={"center"}
+        flexDirection={{ base: "column", md: "row" }}
+        paddingX={20}
+      >
         <div>
           <Heading
             size={"4xl"}
             gradientFrom={"whiteAlpha.300"}
             gradientTo={"blue.400"}
+            textAlign={{ base: "center", md: "start" }}
           >
             Sabit Hazari
           </Heading>
           <Text
             color={"gray.600"}
-            fontSize={"md"}
+            fontSize={"sm"}
             lineHeight={"1.6"}
             width={{ base: "100%", md: "60%" }}
+            textAlign={{ base: "center", md: "start" }}
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit
             molestiae provident harum inventore iste ipsum autem minus quod
@@ -38,7 +46,7 @@ const Footer = () => {
                 key={item.path}
                 as={RouterLink}
                 to={item.path}
-                fontSize={"18px"}
+                fontSize={"sm"}
                 fontWeight={"bold"}
               >
                 {item.label}
@@ -51,7 +59,7 @@ const Footer = () => {
                 key={item.path}
                 as={RouterLink}
                 to={item.path}
-                fontSize={"18px"}
+                fontSize={"sm"}
                 fontWeight={"bold"}
               >
                 {item.label}
@@ -64,8 +72,9 @@ const Footer = () => {
                 key={item.path}
                 as={RouterLink}
                 to={item.path}
-                fontSize={"18px"}
+                fontSize={"sm"}
                 fontWeight={"bold"}
+                border={"none"}
               >
                 {item.label}
               </Link>
@@ -73,14 +82,23 @@ const Footer = () => {
           </Flex>
         </Flex>
       </Flex>
-      <Flex justifyContent={"space-between"} marginTop={7}>
-        <Flex gap={2}>
+      <Flex
+        justifyContent={"space-around"}
+        alignItems={"center"}
+        gap={10}
+        marginTop={10}
+        flexWrap={"wrap"}
+        flexDirection={{ base: "column", md: "row" }}
+      >
+        <Flex gap={2} justifyContent={{ base: "center", md: "" }}>
           <FaInstagram size={20} cursor={"pointer"} />
           <FaLinkedin size={20} cursor={"pointer"} />
           <FaDiscord size={20} cursor={"pointer"} />
           <FaTwitter size={20} cursor={"pointer"} />
         </Flex>
-        <p>&copy; 2025 Copy Right Reserved by Sabit Hazari</p>
+        <Text fontSize={"16px"} textAlign={{ base: "center" }}>
+          &copy; 2025 Copy Right Reserved by Sabit Hazari
+        </Text>
       </Flex>
     </Box>
   );
