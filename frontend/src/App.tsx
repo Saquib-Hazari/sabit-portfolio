@@ -6,6 +6,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import AddProject from "./pages/ProjectBlog/ProjectBlog";
 import { AuthProvider } from "./context/authContext";
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
               <Route path="/contact" element={<Contact />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
+              <Route path="/add-project" element={<AddProject />} />
             </Route>
           </Routes>
         </BrowserRouter>

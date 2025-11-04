@@ -1,4 +1,5 @@
 import { GradientHeading } from "@/Chakra/ui/CustomComponents";
+import { useAuth } from "@/context/authContext";
 
 import {
   Badge,
@@ -8,9 +9,14 @@ import {
   Container,
   HStack,
   Grid,
+  Flex,
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 const Project = () => {
+  const { isAuthenticated, user } = useAuth();
+  const isAdmin = user?.role === "admin";
+
   return (
     <>
       <Container paddingTop={40}>
@@ -127,6 +133,15 @@ const Project = () => {
             </Box>
           </Card.Root>
         </Grid>
+        {isAuthenticated && isAdmin && (
+          <Container marginTop={50}>
+            <Flex justifyContent={"center"} alignItems={"center"}>
+              <Button variant={"solid"}>
+                <Link to={"/add-project"}>+Add Projects</Link>
+              </Button>
+            </Flex>
+          </Container>
+        )}
       </Container>
     </>
   );

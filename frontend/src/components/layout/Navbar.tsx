@@ -1,13 +1,12 @@
-import { Box, Button, Flex, Link, useTagsInput } from "@chakra-ui/react";
+import { Box, Button, Flex, Link, Text } from "@chakra-ui/react";
 import { useLocation, Link as RouterLink } from "react-router-dom";
 import { ColorModeButton } from "../ui/color-mode";
 import { useAuth } from "@/context/authContext";
 import { toast } from "react-toastify";
-import { useEffect } from "react";
 
 const Navbar = () => {
   const location = useLocation();
-  const { isAuthenticated, user, logout, login } = useAuth();
+  const { isAuthenticated, user, logout } = useAuth();
 
   const isAdmin = user?.role === "admin";
 
@@ -48,51 +47,55 @@ const Navbar = () => {
         backdropFilter="blur(10px)"
         borderRadius="10px"
         border="1px solid rgba(255, 255, 255, 0.2)"
+        alignItems="center"
       >
         <Link as={RouterLink} to={"/"} fontSize={24} fontWeight={"bold"}>
           Sabit Hazari
         </Link>
 
-        <Flex gap={6}>
+        <Flex gap={6} alignItems="center">
+          {/* Regular nav items */}
           {navItems.map((items) => (
             <Link key={items.path} as={RouterLink} to={items.path}>
               {items.label}
             </Link>
           ))}
 
-          {isAuthenticated && isAdmin && (
-            <Text>
-              <Link as={RouterLink} to={"/add-project"}>
-                Add Project
-              </Link>
-            </Text>
-          )}
-
-          {/* Show user email and lout if authenticated, else show login */}
+          {/* Show logout if authenticated, else show login/signup */}
           {isAuthenticated ? (
-            <Button
-              colorPalette={"teal"}
-              variant={"outline"}
-              onClick={handleLogout}
-            >
-              Logout
-            </Button>
+            <Flex gap={4} alignItems="center">
+              <Button
+                colorPalette="teal"
+                rounded={"100px"}
+                fontWeight={"bolder"}
+                fontSize="sm"
+              >
+                {user?.name.slice(0, 1).toUpperCase()}
+              </Button>
+              <Button
+                colorPalette="teal"
+                variant="outline"
+                onClick={handleLogout}
+              >
+                Logout
+              </Button>
+            </Flex>
           ) : (
-            <>
-              <Button colorPalette={"teal"} as={RouterLink} to={"/login"}>
+            <Flex gap={2}>
+              <Button colorPalette="teal" as={RouterLink} to={"/login"}>
                 Login
               </Button>
-
               <Button
-                colorPalette={"teal"}
-                variant={"outline"}
+                colorPalette="teal"
+                variant="outline"
                 as={RouterLink}
                 to={"/signup"}
               >
                 SignUp
               </Button>
-            </>
+            </Flex>
           )}
+
           <ColorModeButton />
         </Flex>
       </Flex>

@@ -53,7 +53,7 @@ const Login = () => {
             <Field.Root>
               <Field.Label>Country</Field.Label>
               <NativeSelect.Root>
-                <NativeSelect.Field name="country">
+                <NativeSelect.Field name="country" border={"1px solid gray"}>
                   <For
                     each={[
                       "United Kingdom",
