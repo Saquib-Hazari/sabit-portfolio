@@ -1,5 +1,13 @@
-import { GradientHeading } from "@/Chakra/ui/CustomComponents";
-import { Container } from "@chakra-ui/react";
+import { GradientBox, GradientHeading } from "@/Chakra/ui/CustomComponents";
+import { userSignupForm } from "@/hooks/userSignupForm";
+import {
+  FieldLabel,
+  FieldsetContent,
+  Flex,
+  Span,
+  Text,
+  Textarea,
+} from "@chakra-ui/react";
 import {
   Button,
   Field,
@@ -9,55 +17,127 @@ import {
   NativeSelect,
   Stack,
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
-const Signup = () => {
+const Login = () => {
+  const { methods, onSubmit, loading } = userSignupForm();
+  const {
+    register,
+    formState: { errors, isValid },
+    reset,
+    handleSubmit,
+  } = methods;
   return (
     <>
-      <Container>
+      <GradientBox padding={150}>
         <GradientHeading>SignUp</GradientHeading>
-        <Fieldset.Root size="lg" maxW="md">
-          <Stack>
-            <Fieldset.Legend>Contact details</Fieldset.Legend>
-            <Fieldset.HelperText>
-              Please provide your contact details below.
-            </Fieldset.HelperText>
-          </Stack>
+        <Text textAlign={"center"} marginTop={2}>
+          New user SingUp
+        </Text>
 
-          <Fieldset.Content>
-            <Field.Root>
-              <Field.Label>Name</Field.Label>
-              <Input name="name" />
-            </Field.Root>
+        <Flex justifyContent={"center"} alignItems={"center"} marginTop={7}>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Fieldset.Root
+              size="lg"
+              maxW="md"
+              bg={{
+                base: "rgba(255, 255, 255, 0.3)",
+                _dark:
+                  "linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1))",
+              }}
+              backdropFilter="blur(10px)"
+              border="1px solid"
+              borderColor="rgba(255, 255, 255, 0.2)"
+              padding="20px"
+              borderRadius="10px"
+              boxShadow="0 4px 6px rgba(0, 0, 0, 0.2)"
+            >
+              <Stack>
+                <Fieldset.Legend fontSize={24}>SignUp details</Fieldset.Legend>
+                <Fieldset.HelperText>
+                  Please provide your SignUp details. We handle your data with
+                  care.
+                </Fieldset.HelperText>
+              </Stack>
 
-            <Field.Root>
-              <Field.Label>Email address</Field.Label>
-              <Input name="email" type="email" />
-            </Field.Root>
+              <Fieldset.Content>
+                <Field.Root>
+                  <Field.Label>Enter Full Name</Field.Label>
+                  <Input
+                    type="name"
+                    {...register("name")}
+                    disabled={loading}
+                    border={"1px solid gray"}
+                  />
+                  {errors.name && (
+                    <Text color={"red.300"} mt={1} fontSize={"16px"}>
+                      {errors.name.message}
+                    </Text>
+                  )}
+                </Field.Root>
 
-            <Field.Root>
-              <Field.Label>Country</Field.Label>
-              <NativeSelect.Root>
-                <NativeSelect.Field name="country">
-                  <For each={["United Kingdom", "Canada", "United States"]}>
-                    {(item) => (
-                      <option key={item} value={item}>
-                        {item}
-                      </option>
-                    )}
-                  </For>
-                </NativeSelect.Field>
-                <NativeSelect.Indicator />
-              </NativeSelect.Root>
-            </Field.Root>
-          </Fieldset.Content>
+                <Field.Root>
+                  <Field.Label>Email Address</Field.Label>
+                  <Input
+                    {...register("email")}
+                    disabled={loading}
+                    type="email"
+                    border={"1px solid gray"}
+                  />
+                  {errors.email && (
+                    <Text color={"red.300"} mt={1} fontSize={"16px"}>
+                      {errors.email.message}
+                    </Text>
+                  )}
+                </Field.Root>
+                <Field.Root>
+                  <Field.Label>Password</Field.Label>
+                  <Input
+                    type="password"
+                    {...register("password")}
+                    disabled={loading}
+                    border={"1px solid gray"}
+                  />
+                  {errors.password && (
+                    <Text color={"red.300"} mt={1} fontSize={"16px"}>
+                      {errors.password.message}
+                    </Text>
+                  )}
+                </Field.Root>
+                <Field.Root>
+                  <Field.Label>Confirm Password</Field.Label>
+                  <Input
+                    {...register("confirmPassword")}
+                    display={loading}
+                    type="password"
+                    border={"1px solid gray"}
+                  />
+                  {errors.confirmPassword && (
+                    <Text color={"red.300"} mt={1} fontSize={"16px"}>
+                      {errors.confirmPassword.message}
+                    </Text>
+                  )}
+                </Field.Root>
+              </Fieldset.Content>
 
-          <Button type="submit" alignSelf="flex-start">
-            Submit
-          </Button>
-        </Fieldset.Root>
-      </Container>
+              <FieldsetContent>
+                <Text textDecoration={"underline"}>
+                  Already User?{" "}
+                  <Link to={"/login"} color="red">
+                    Login
+                  </Link>
+                </Text>
+              </FieldsetContent>
+
+              <Button type="submit" alignSelf="flex-start">
+                Submit
+              </Button>
+            </Fieldset.Root>
+          </form>
+        </Flex>
+      </GradientBox>
     </>
   );
 };
 
-export default Signup;
+export default Login;

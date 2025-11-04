@@ -8,7 +8,7 @@ interface Props {
 
 export const GradientBox = ({ children, ...props }: Props) => (
   <Box
-    height="70vh"
+    height="80vh"
     bg="linear-gradient(180deg, white 40%, #f0f0f0)" // Light mode
     _dark={{
       bg: "linear-gradient(180deg, black 40%, rgb(1, 87, 87))", // Dark mode
