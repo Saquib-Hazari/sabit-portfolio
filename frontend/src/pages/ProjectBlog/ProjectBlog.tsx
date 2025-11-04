@@ -1,7 +1,7 @@
 import { GradientHeading } from "@/Chakra/ui/CustomComponents";
 import { Badge, Container, Heading } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-
+// TODO: Porject Blog page
 const ProjectBlog = () => {
   return (
     <>
