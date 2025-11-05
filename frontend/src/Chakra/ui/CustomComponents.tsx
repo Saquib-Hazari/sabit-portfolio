@@ -13,6 +13,7 @@ export const GradientBox = ({ children, ...props }: Props) => (
     _dark={{
       bg: "linear-gradient(180deg, black 40%, rgb(1, 87, 87))", // Dark mode
     }}
+    paddingTop={150}
     {...props}
   >
     {children}

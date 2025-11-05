@@ -20,7 +20,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { useRef, type ChangeEvent } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ Add this
+import { useNavigate } from "react-router-dom";
 
 interface AddProjectProps {
   onProjectAdded?: (project: Project) => void;
@@ -34,7 +34,7 @@ const AddProjectModal = ({ onProjectAdded }: AddProjectProps) => {
     useProjectForm({
       onSubmitSuccess: (project) => {
         onProjectAdded?.(project);
-        navigate("/project");
+        navigate("/projects");
       },
     });
 
@@ -96,7 +96,6 @@ const AddProjectModal = ({ onProjectAdded }: AddProjectProps) => {
             </Stack>
 
             <Fieldset.Content>
-              {/* Your form fields remain the same */}
               <Field.Root>
                 <Field.Label>Project Title</Field.Label>
                 <Input
@@ -251,10 +250,9 @@ const AddProjectModal = ({ onProjectAdded }: AddProjectProps) => {
             </Fieldset.Content>
 
             <Flex gap={4} mt={6}>
-              {/* ✅ FIXED: Navigate back on cancel */}
               <Button
                 type="button"
-                onClick={() => navigate("/projects")} // ✅ Go back to projects page
+                onClick={() => navigate("/projects")}
                 colorPalette={"teal"}
                 variant={"outline"}
                 disabled={submitting || uploading}

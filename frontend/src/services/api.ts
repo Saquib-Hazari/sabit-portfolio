@@ -1,4 +1,4 @@
-// Creating the service api
+// In your api service file
 import axios from "axios";
 
 const API_BASE_URL =
@@ -6,7 +6,7 @@ const API_BASE_URL =
 
 export const api = axios.create({
   baseURL: API_BASE_URL,
-  // withCredentials: true,
+  withCredentials: true,
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",

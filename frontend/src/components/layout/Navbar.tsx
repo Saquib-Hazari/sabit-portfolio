@@ -11,10 +11,10 @@ const Navbar = () => {
   const isAdmin = user?.role === "admin";
 
   const navItems = [
-    { path: "/", label: "Home" },
-    { path: "/project", label: "Project" },
-    { path: "/about", label: "About" },
-    { path: "/contact", label: "Contact" },
+    { path: "/", label: "Welcome" },
+    { path: "/project", label: "Creations" },
+    { path: "/about", label: "Services" },
+    { path: "/contact", label: "Let's talk" },
   ];
 
   const handleLogout = async () => {

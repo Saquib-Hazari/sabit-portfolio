@@ -1,5 +1,8 @@
 import { GradientHeading } from "@/Chakra/ui/CustomComponents";
 import { useAuth } from "@/context/authContext";
+import { api } from "@/services/api";
+import { type Project } from "@/types/projectTypes";
+import addBlogImage from "@/assets/NIck.jpg";
 
 import {
   Badge,
@@ -10,140 +13,192 @@ import {
   HStack,
   Grid,
   Flex,
+  Text,
+  Image,
+  VStack,
+  Spinner,
 } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Project = () => {
   const { isAuthenticated, user } = useAuth();
   const isAdmin = user?.role === "admin";
 
-  return (
-    <>
-      <Container paddingTop={40}>
-        <GradientHeading>Projects</GradientHeading>
-        <HStack fontWeight={"bolder"} fontSize={"18px"}>
-          My Projects
-        </HStack>
-        {/* Project cards */}
+  const [loading, setLoading] = useState(true);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
-        <Grid
-          templateColumns="repeat(2,1fr)"
-          gap={6}
-          justifyContent={"center"}
-          alignItems={"center"}
-        >
-          <Card.Root
-            flexDirection="row"
-            overflow="hidden"
-            maxW="2xl"
-            marginTop={30}
-          >
-            <Box>
-              <Card.Body>
-                <Card.Title mb="2">The perfect latte</Card.Title>
-                <Card.Description>
-                  Caffè latte is a coffee beverage of Italian origin made with
-                  espresso and steamed milk.
-                </Card.Description>
-                <HStack mt="4">
-                  <Badge>Hot</Badge>
-                  <Badge>Caffeine</Badge>
-                </HStack>
-              </Card.Body>
-              <Card.Footer>
-                <Button colorPalette={"teal"} variant={"solid"}>
-                  Explore
-                </Button>
-              </Card.Footer>
-            </Box>
-          </Card.Root>
-          <Card.Root
-            flexDirection="row"
-            overflow="hidden"
-            maxW="2xl"
-            marginTop={30}
-          >
-            <Box>
-              <Card.Body>
-                <Card.Title mb="2">The perfect latte</Card.Title>
-                <Card.Description>
-                  Caffè latte is a coffee beverage of Italian origin made with
-                  espresso and steamed milk.
-                </Card.Description>
-                <HStack mt="4">
-                  <Badge>Hot</Badge>
-                  <Badge>Caffeine</Badge>
-                </HStack>
-              </Card.Body>
-              <Card.Footer>
-                <Button colorPalette={"teal"} variant={"solid"}>
-                  Explore
-                </Button>
-              </Card.Footer>
-            </Box>
-          </Card.Root>
-          <Card.Root
-            flexDirection="row"
-            overflow="hidden"
-            maxW="2xl"
-            marginTop={30}
-          >
-            <Box>
-              <Card.Body>
-                <Card.Title mb="2">The perfect latte</Card.Title>
-                <Card.Description>
-                  Caffè latte is a coffee beverage of Italian origin made with
-                  espresso and steamed milk.
-                </Card.Description>
-                <HStack mt="4">
-                  <Badge>Hot</Badge>
-                  <Badge>Caffeine</Badge>
-                </HStack>
-              </Card.Body>
-              <Card.Footer>
-                <Button colorPalette={"teal"} variant={"solid"}>
-                  Explore
-                </Button>
-              </Card.Footer>
-            </Box>
-          </Card.Root>
-          <Card.Root
-            flexDirection="row"
-            overflow="hidden"
-            maxW="2xl"
-            marginTop={30}
-          >
-            <Box>
-              <Card.Body>
-                <Card.Title mb="2">The perfect latte</Card.Title>
-                <Card.Description>
-                  Caffè latte is a coffee beverage of Italian origin made with
-                  espresso and steamed milk.
-                </Card.Description>
-                <HStack mt="4">
-                  <Badge>Hot</Badge>
-                  <Badge>Caffeine</Badge>
-                </HStack>
-              </Card.Body>
-              <Card.Footer>
-                <Button colorPalette={"teal"} variant={"solid"}>
-                  Explore
-                </Button>
-              </Card.Footer>
-            </Box>
-          </Card.Root>
-        </Grid>
-        {isAuthenticated && isAdmin && (
-          <Container marginTop={50}>
-            <Flex justifyContent={"center"} alignItems={"center"}>
-              <Button variant={"solid"}>
-                <Link to={"/add-project"}>+Add Projects</Link>
-              </Button>
-            </Flex>
-          </Container>
-        )}
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
+  const fetchProjects = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const response = await api.get("/api/projects");
+
+      const responseData = response.data;
+
+      if (responseData.success && Array.isArray(responseData.projects)) {
+        setProjects(responseData.projects);
+      } else {
+        console.warn("❌ Unexpected response structure:", responseData);
+        setProjects([]);
+      }
+    } catch (error: any) {
+      console.error("❌ Error fetching projects:", error);
+      setError(error.message || "Failed to load projects");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <Container paddingTop={40} textAlign={"center"}>
+        <Spinner size="xl" color="teal" />
+        <Text mt={4} color={"teal"}>
+          Loading projects...
+        </Text>
       </Container>
-    </>
+    );
+  }
+
+  if (error) {
+    return (
+      <Container paddingTop={40} textAlign={"center"}>
+        <Text color="red.500" fontSize="xl">
+          Error loading projects: {error}
+        </Text>
+        <Button onClick={fetchProjects} colorScheme="teal" mt={4}>
+          Try Again
+        </Button>
+      </Container>
+    );
+  }
+
+  return (
+    <Container paddingTop={40}>
+      <VStack mb={8}>
+        <GradientHeading>Showcase</GradientHeading>
+        <Text fontSize="xl" textAlign="center">
+          My Projects
+        </Text>
+      </VStack>
+
+      <Grid
+        templateColumns="repeat(2, 1fr)"
+        gap={6}
+        justifyContent={"center"}
+        alignItems={"center"}
+      >
+        {projects.map((project) => (
+          <Card.Root
+            key={project._id}
+            flexDirection="row"
+            bg={{ base: "gray.100", _dark: "gray.900" }}
+            overflow="hidden"
+            flex={"1"}
+            marginTop={30}
+            border={"1px solid rgba(255, 255, 255, 0.1)"}
+            transition="all 0.1s ease-in-out"
+            _hover={{
+              transform: "translateY(-4px)",
+              boxShadow: "lg",
+            }}
+          >
+            <Box flex="2">
+              <Card.Body>
+                <Flex gap={3} justifyContent={"space-between"}>
+                  <Card.Title mb="2" fontSize="xl">
+                    {project.title || "Untitled Project"}
+                  </Card.Title>
+                  <Image
+                    src={addBlogImage}
+                    objectFit="cover"
+                    width="50px"
+                    height="50px"
+                    borderRadius={"100%"}
+                    border={"2px solid gray"}
+                  />
+                </Flex>
+                <VStack align="start">
+                  <Card.Description color="teal.600" fontWeight="medium">
+                    {project.subtitle || "No subtitle"}
+                  </Card.Description>
+                  <Text
+                    color="gray.500"
+                    css={{
+                      display: "-webkit-box",
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: "vertical",
+                      overflow: "hidden",
+                    }}
+                  >
+                    {project.description || "No description available"}
+                  </Text>
+
+                  {project.techStack && (
+                    <HStack mt="4" wrap="wrap">
+                      {Array.isArray(project.techStack) ? (
+                        project.techStack.map((tech, index) => (
+                          <Badge
+                            key={index}
+                            colorScheme="blue"
+                            variant="subtle"
+                          >
+                            {tech}
+                          </Badge>
+                        ))
+                      ) : (
+                        <Badge colorScheme="blue" variant="subtle">
+                          {project.techStack}
+                        </Badge>
+                      )}
+                    </HStack>
+                  )}
+                </VStack>
+              </Card.Body>
+
+              <Card.Footer>
+                <HStack>
+                  <Button colorPalette={"teal"} variant={"solid"}>
+                    Explore
+                  </Button>
+                </HStack>
+              </Card.Footer>
+            </Box>
+          </Card.Root>
+        ))}
+      </Grid>
+
+      {/* Add Project Button for Admin */}
+      {isAuthenticated && isAdmin && projects.length > 0 && (
+        <Container marginTop={50}>
+          <Flex
+            justifyContent={"center"}
+            flexDirection={"column"}
+            alignItems={"center"}
+          >
+            <Text fontSize={"24px"} fontWeight={"bold"}>
+              To Add New Project Click Below{" "}
+            </Text>
+            <Text mb={5}>This button is only visible to Admin User.</Text>
+            <Button
+              as={Link}
+              to="/add-project"
+              variant={"solid"}
+              colorScheme="teal"
+            >
+              + Add Projects
+            </Button>
+          </Flex>
+        </Container>
+      )}
+    </Container>
   );
 };
 

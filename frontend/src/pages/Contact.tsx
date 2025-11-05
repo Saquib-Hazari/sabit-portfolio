@@ -12,8 +12,8 @@ import {
 const Login = () => {
   return (
     <>
-      <GradientBox padding={150}>
-        <GradientHeading>Contact Me</GradientHeading>
+      <GradientBox>
+        <GradientHeading>Connect with me</GradientHeading>
 
         <Flex justifyContent={"center"} alignItems={"center"} marginTop={10}>
           <Fieldset.Root
