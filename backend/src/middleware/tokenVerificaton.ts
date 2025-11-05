@@ -6,6 +6,7 @@ interface JwtPayload {
   id: string;
   email: string;
   name: string;
+  role: string;
   iat?: number;
   exp?: number;
 }
@@ -17,6 +18,7 @@ declare global {
         id: string;
         email: string;
         name: string;
+        role: string;
       };
     }
   }
@@ -42,6 +44,7 @@ export const Authentication = async (
       id: decoded.id,
       email: decoded.email,
       name: decoded.name,
+      role: decoded.role,
     };
 
     next();

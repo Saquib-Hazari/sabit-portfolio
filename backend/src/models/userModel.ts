@@ -5,6 +5,7 @@ interface Users {
   name: string;
   email: string;
   password: string;
+  role: "user" | "admin";
   otpVerify: string;
   otpExpired: number;
   accountVerify: boolean;
@@ -22,16 +23,21 @@ export const userSchema = new mongoose.Schema<Users>(
       trim: true,
     },
     email: {
-      type: String, // ✅ Fixed: "type" not "types"
+      type: String,
       required: true,
       trim: true,
       lowercase: true,
       unique: true,
     },
     password: {
-      type: String, // ✅ Fixed: "type" not "types"
+      type: String,
       required: true,
       trim: true,
+    },
+    role: {
+      type: String,
+      enum: ["user", "admin"],
+      default: "user",
     },
     otpVerify: {
       type: String,

@@ -99,6 +99,7 @@ class AuthUserController {
           id: user._id.toString(),
           name: user.name,
           email: user.email,
+          role: user.role,
         },
         process.env.JWT_SECRET!,
         { expiresIn: "7d" }
@@ -118,6 +119,7 @@ class AuthUserController {
           id: user._id,
           name: user.name,
           email: user.email,
+          role: user.role,
           accountVerify: user.accountVerify,
         },
       });

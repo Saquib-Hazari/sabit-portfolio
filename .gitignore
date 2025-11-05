@@ -1,6 +1,9 @@
-.todo
-*.todo
-
-vscode/
-dist/
+node_modules/
+.env
+*env
+Dist/
 DS_Store/
+vscode/
+logs
+*logs
+coverage/

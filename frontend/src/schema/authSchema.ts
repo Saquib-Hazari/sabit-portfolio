@@ -50,5 +50,36 @@ export const registerSchema = z
     path: ["confirmPassword"],
   });
 
+export const projectSchema = z.object({
+  title: z
+    .string()
+    .min(1, { message: "Title filed is required" })
+    .max(50, { message: "Title should be less than 50 character" })
+    .trim(),
+  subtitle: z
+    .string()
+    .min(3, { message: "Subtitle field is Required." })
+    .max(100, { message: "Subtitle should be less than 100 character" })
+    .trim(),
+  description: z
+    .string()
+    .min(5, { message: "Description field is required" })
+    .trim(),
+  link: z.string().url("Must be a valid URL").optional().or(z.literal("")),
+  imageUrl: z.instanceof(File).optional(),
+  techStack: z.string(),
+});
+
+export const projectApiSchema = z.object({
+  title: z.string(),
+  subtitle: z.string(),
+  description: z.string(),
+  link: z.string().optional(),
+  imageUrl: z.string().optional(),
+  techStack: z.string(),
+});
+
 export type LoginFormData = z.infer<typeof loginSchema>;
 export type RegisterFormData = z.infer<typeof registerSchema>;
+export type ProjectFormData = z.infer<typeof projectSchema>;
+export type ProjectApiFormData = z.infer<typeof projectApiSchema>;
