@@ -1,14 +1,24 @@
-import { Box, Button, Flex, Link, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Drawer,
+  Flex,
+  Icon,
+  Link,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import { useLocation, Link as RouterLink } from "react-router-dom";
 import { ColorModeButton } from "../ui/color-mode";
 import { useAuth } from "@/context/authContext";
 import { toast } from "react-toastify";
+import { useState } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
   const location = useLocation();
   const { isAuthenticated, user, logout } = useAuth();
-
-  const isAdmin = user?.role === "admin";
+  const [isDrawOpen, setIsDrawOpen] = useState(false);
 
   const navItems = [
     { path: "/", label: "Welcome" },
@@ -21,9 +31,14 @@ const Navbar = () => {
     try {
       await logout();
       toast.success("Logged Out Successfully!");
+      setIsDrawOpen(false);
     } catch (error) {
       toast.error("Logout Failed!");
     }
+  };
+
+  const toggleDrawer = () => {
+    setIsDrawOpen(!isDrawOpen);
   };
 
   return (
@@ -53,15 +68,18 @@ const Navbar = () => {
           Sabit Hazari
         </Link>
 
-        <Flex gap={6} alignItems="center">
-          {/* Regular nav items */}
+        {/* Desktop Menu */}
+        <Flex
+          gap={6}
+          alignItems="center"
+          display={{ base: "none", md: "flex" }}
+        >
           {navItems.map((items) => (
             <Link key={items.path} as={RouterLink} to={items.path}>
               {items.label}
             </Link>
           ))}
 
-          {/* Show logout if authenticated, else show login/signup */}
           {isAuthenticated ? (
             <Flex gap={4} alignItems="center">
               <Button
@@ -98,7 +116,114 @@ const Navbar = () => {
 
           <ColorModeButton />
         </Flex>
+
+        <Icon
+          as={isDrawOpen ? FaTimes : FaBars}
+          display={{ base: "flex", md: "none" }}
+          aria-label="Open menu"
+          onClick={toggleDrawer}
+          color="teal.500"
+          zIndex={150}
+          position="relative"
+          boxSize="30px"
+          cursor="pointer"
+        />
       </Flex>
+
+      <Drawer.Root
+        open={isDrawOpen}
+        onOpenChange={(e) => setIsDrawOpen(e.open)}
+        placement="top"
+        size="full"
+      >
+        <Drawer.Backdrop />
+        <Drawer.Positioner>
+          <Drawer.Content bg="bg.panel" height="100vh" zIndex={140}>
+            <Drawer.Header paddingTop={"40px"}>
+              <Text fontSize="xl" fontWeight="bold">
+                Sabit Hazari
+              </Text>
+
+              <Drawer.CloseTrigger right={"30px"} top={"30px"}>
+                <Icon
+                  as={isDrawOpen ? FaTimes : FaBars}
+                  display={{ base: "flex", md: "none" }}
+                  aria-label="Open menu"
+                  onClick={toggleDrawer}
+                  color="teal.500"
+                  zIndex={150}
+                  position="relative"
+                  boxSize="30px"
+                  cursor="pointer"
+                />
+              </Drawer.CloseTrigger>
+            </Drawer.Header>
+            <Drawer.Body>
+              <VStack align="stretch" mt={8}>
+                {navItems.map((items) => (
+                  <Link
+                    key={items.path}
+                    as={RouterLink}
+                    to={items.path}
+                    onClick={() => setIsDrawOpen(false)}
+                    fontSize="xl"
+                    py={3}
+                    borderBottom="1px solid"
+                    borderColor="gray.200"
+                    _dark={{ borderColor: "gray.600" }}
+                  >
+                    {items.label}
+                  </Link>
+                ))}
+
+                {isAuthenticated ? (
+                  <>
+                    <Text py={3} fontSize="lg" fontWeight="bold">
+                      Welcome, {user?.name}
+                    </Text>
+                    <Button
+                      colorPalette="teal"
+                      variant="outline"
+                      onClick={handleLogout}
+                      size="lg"
+                    >
+                      Logout
+                    </Button>
+                  </>
+                ) : (
+                  <VStack spacing={3} mt={4}>
+                    <Button
+                      colorPalette="teal"
+                      as={RouterLink}
+                      to={"/login"}
+                      onClick={() => setIsDrawOpen(false)}
+                      size="lg"
+                      width="100%"
+                    >
+                      Login
+                    </Button>
+                    <Button
+                      colorPalette="teal"
+                      variant="outline"
+                      as={RouterLink}
+                      to={"/signup"}
+                      onClick={() => setIsDrawOpen(false)}
+                      size="lg"
+                      width="100%"
+                    >
+                      SignUp
+                    </Button>
+                  </VStack>
+                )}
+
+                <Flex justifyContent="center" mt={8}>
+                  <ColorModeButton />
+                </Flex>
+              </VStack>
+            </Drawer.Body>
+          </Drawer.Content>
+        </Drawer.Positioner>
+      </Drawer.Root>
     </Box>
   );
 };

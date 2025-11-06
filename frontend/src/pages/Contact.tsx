@@ -1,5 +1,14 @@
 import { GradientBox, GradientHeading } from "@/Chakra/ui/CustomComponents";
-import { FieldLabel, Flex, Text, Textarea } from "@chakra-ui/react";
+import {
+  Box,
+  Container,
+  FieldLabel,
+  Flex,
+  Heading,
+  Image,
+  Text,
+  Textarea,
+} from "@chakra-ui/react";
 import {
   Button,
   Field,
@@ -9,27 +18,21 @@ import {
   NativeSelect,
   Stack,
 } from "@chakra-ui/react";
+import { Link, Links } from "react-router-dom";
+import Logo from "@/assets/phone.svg";
+
 const Login = () => {
   return (
     <>
-      <GradientBox>
+      <Box paddingTop={"100px"} margin={"40px"}>
         <GradientHeading>Connect with me</GradientHeading>
 
         <Flex justifyContent={"center"} alignItems={"center"} marginTop={10}>
           <Fieldset.Root
             size="lg"
-            maxW="md"
-            bg={{
-              base: "rgba(255, 255, 255, 0.3)",
-              _dark:
-                "linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1))",
-            }}
-            backdropFilter="blur(10px)"
-            border="1px solid"
-            borderColor="rgba(255, 255, 255, 0.2)"
+            width="100%"
             padding="20px"
             borderRadius="10px"
-            boxShadow="0 4px 6px rgba(0, 0, 0, 0.2)"
           >
             <Stack>
               <Fieldset.Legend fontSize={24}>Contact details</Fieldset.Legend>
@@ -86,12 +89,39 @@ const Login = () => {
               <Textarea placeholder="Comment..." border={"1px solid gray"} />
             </Field.Root>
 
-            <Button type="submit" alignSelf="flex-start">
+            <Button width="100%" type="submit" alignSelf="flex-start">
               Submit
             </Button>
           </Fieldset.Root>
         </Flex>
-      </GradientBox>
+        <Text>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi
+          consequuntur eum molestias in nemo ex nobis earum vero voluptatibus,
+          dolorum autem repellat iste amet nesciunt! Iure dolores sequi fugit
+          voluptas.
+        </Text>
+        <Heading fontSize={"35px"} marginTop={20} textAlign={"center"}>
+          You can connect through socials
+        </Heading>
+        <Text textAlign={"center"}>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia,
+          blanditiis.
+        </Text>
+        <Flex justifyContent={"space-between"} alignItems={"center"} gap={40}>
+          <Container display="flex" flexDirection={"column"}>
+            <Link to={"http://www.google.com"}>
+              <Button width="100%" mb={4}>
+                Twitter
+              </Button>
+            </Link>
+            <Button colorPalette={"blue"} mb={4}>
+              Linkedin
+            </Button>
+            <Button colorPalette={"red"}>Facebook</Button>
+          </Container>
+          <Image src={Logo} height={"30%"} width={"40%"} objectFit={"cover"} />
+        </Flex>
+      </Box>
     </>
   );
 };

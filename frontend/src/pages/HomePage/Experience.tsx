@@ -4,7 +4,7 @@ import {
   Button,
   Card,
   Container,
-  Flex,
+  Grid,
   HStack,
   Text,
 } from "@chakra-ui/react";
@@ -14,18 +14,22 @@ const Experience = () => {
     <>
       <Container marginTop={40}>
         <GradientHeading>Experience</GradientHeading>
+        <Text textAlign={"center"}>My Journey in Finance & Technology</Text>
         <HStack fontWeight={"bolder"} fontSize={"18px"}>
           Skills and Experiences
         </HStack>
-        <Flex
-          justifyContent={"space-between"}
-          alignItems={"center"}
-          gap={4}
-          flexWrap={"wrap"}
-          flexDirection={{ base: "column", md: "row" }}
+        <Grid
+          templateColumns={{
+            base: "1fr",
+            md: "repeat(2, 1fr)",
+            lg: "repeat(3, 1fr)",
+            xl: "repeat(4, 1fr)",
+          }}
+          gapX={6}
+          marginTop={8}
         >
+          {/* Card 1 */}
           <Card.Root
-            width="320px"
             marginTop={"30px"}
             bg={{ base: "gray.100", _dark: "gray.900" }}
           >
@@ -43,8 +47,7 @@ const Experience = () => {
               <Card.Title mt="2">Nue Camp</Card.Title>
               <Card.Description>
                 This is the card body. Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit. Curabitur nec odio vel dui euismod fermentum.
-                Curabitur nec odio vel dui euismod fermentum.
+                adipiscing elit.
               </Card.Description>
             </Card.Body>
             <Card.Footer justifyContent="flex-end">
@@ -53,7 +56,9 @@ const Experience = () => {
               </Button>
             </Card.Footer>
           </Card.Root>
-          <Card.Root width="320px" marginTop={"30px"} bg={"teal"}>
+
+          {/* Card 2 */}
+          <Card.Root marginTop={"30px"} bg={"teal"}>
             <Card.Body gap="2">
               <Avatar.Root
                 size="2xl"
@@ -68,8 +73,7 @@ const Experience = () => {
               <Card.Title mt="2">Nue Camp</Card.Title>
               <Card.Description color={"black"}>
                 This is the card body. Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit. Curabitur nec odio vel dui euismod fermentum.
-                Curabitur nec odio vel dui euismod fermentum.
+                adipiscing elit.
               </Card.Description>
             </Card.Body>
             <Card.Footer justifyContent="flex-end">
@@ -78,8 +82,9 @@ const Experience = () => {
               </Button>
             </Card.Footer>
           </Card.Root>
+
+          {/* Card 3 */}
           <Card.Root
-            width="320px"
             marginTop={"30px"}
             bg={{ base: "gray.100", _dark: "gray.900" }}
           >
@@ -97,8 +102,7 @@ const Experience = () => {
               <Card.Title mt="2">Nue Camp</Card.Title>
               <Card.Description>
                 This is the card body. Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit. Curabitur nec odio vel dui euismod fermentum.
-                Curabitur nec odio vel dui euismod fermentum.
+                adipiscing elit.
               </Card.Description>
             </Card.Body>
             <Card.Footer justifyContent="flex-end">
@@ -107,8 +111,9 @@ const Experience = () => {
               </Button>
             </Card.Footer>
           </Card.Root>
+
+          {/* Card 4 */}
           <Card.Root
-            width="320px"
             marginTop={"30px"}
             bg={{ base: "gray.100", _dark: "gray.900" }}
           >
@@ -126,8 +131,7 @@ const Experience = () => {
               <Card.Title mt="2">Nue Camp</Card.Title>
               <Card.Description>
                 This is the card body. Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit. Curabitur nec odio vel dui euismod fermentum.
-                Curabitur nec odio vel dui euismod fermentum.
+                adipiscing elit.
               </Card.Description>
             </Card.Body>
             <Card.Footer justifyContent="flex-end">
@@ -136,7 +140,7 @@ const Experience = () => {
               </Button>
             </Card.Footer>
           </Card.Root>
-        </Flex>
+        </Grid>
       </Container>
     </>
   );

@@ -36,10 +36,16 @@ const FAQ = () => {
   return (
     <Container paddingTop={40}>
       <GradientHeading>Frequently Asked Questions</GradientHeading>
+      <Text textAlign={"center"}>
+        Some of the common Queries people may ask.
+      </Text>
+      <Text fontSize={"18px"} fontWeight={"bold"} mt="20px">
+        Common Questions
+      </Text>
 
       <Flex gap={10} direction={{ base: "column", lg: "row" }} align="start">
         {/* FAQ Section */}
-        <Box flex={1} marginTop={50} width={"100%"}>
+        <Box flex={1} marginTop={30} width={"100%"}>
           {faqData.map((faq, index) => (
             <Box
               key={index}

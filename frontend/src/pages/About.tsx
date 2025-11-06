@@ -28,7 +28,7 @@ const About = () => {
     <>
       <Container paddingTop={"150px"}>
         <GradientHeading>My Path and Services</GradientHeading>
-        <Heading fontSize={"24px"} fontWeight={"bolder"} mb={4}>
+        <Heading fontSize={"24px"} fontWeight={"bolder"} mb={4} mt={20}>
           Portfolio Management
         </Heading>
         <Text>
@@ -60,9 +60,9 @@ const About = () => {
       <Heading textAlign={"center"} fontSize={"45px"} margin={50}>
         Pricing
       </Heading>
-      <Container display={"flex"} justifyContent={"center"} gap={10}>
+      <Container display={"flex"} justifyContent={"center"} gap={6}>
         <Box
-          bg={"gray.900"}
+          bg={{ base: "gray.100", _dark: "gray.900" }}
           padding={"20px"}
           rounded={"10px"}
           border={"1px solid #333"}
@@ -148,7 +148,7 @@ const About = () => {
           </Button>
         </Box>
         <Box
-          bg={"gray.900"}
+          bg={{ base: "gray.100", _dark: "gray.900" }}
           padding={"20px"}
           rounded={"10px"}
           border={"1px solid #333"}

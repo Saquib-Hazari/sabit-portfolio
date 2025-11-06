@@ -4,22 +4,31 @@ import {
   GradientBox,
   GradientHeading,
 } from "@/Chakra/ui/CustomComponents";
-import { Button, Flex } from "@chakra-ui/react";
+import { Button, Flex, Image, Text } from "@chakra-ui/react";
 import Experience from "./Experience";
 import Project from "../Project";
 import FAQ from "./FAQ";
+import Nick from "@/assets/NIck.jpg";
 
 const Homepage = () => {
   return (
     <>
       <GradientBox>
         <CenteredFlex>
+          <Image
+            src={Nick}
+            width={"100px"}
+            height={"100px"}
+            rounded={"full"}
+            border={"1px solid white"}
+          />
           <GradientHeading>Principaled Finanacial Leadership</GradientHeading>
-          <DescriptionText>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Est ab
-            eveniet aut nostrum, vero ratione repellendus vel mollitia, ullam
-            quod dolor velit iure reprehenderit sint sit, quo porro nulla! In.
-          </DescriptionText>
+          <Text textAlign={"center"} paddingX={35}>
+            Detailed analysis with strategic vision to turn complex financial
+            data into clear growth opportunities. My approach is built on
+            technical skill and a strong ethical foundation to deliver solid,
+            lasting results
+          </Text>
           <Flex gap={2} marginTop={"30px"}>
             <Button colorPalette={"teal"}>My Project</Button>
             <Button colorPalette={"teal"} variant={"outline"}>

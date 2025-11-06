@@ -1,4 +1,4 @@
-import { GradientBox, GradientHeading } from "@/Chakra/ui/CustomComponents";
+import { GradientHeading } from "@/Chakra/ui/CustomComponents";
 import { useProjectForm } from "@/hooks/addProjectForm";
 import type { Project } from "@/types/projectTypes";
 import {
@@ -27,7 +27,6 @@ interface AddProjectProps {
 }
 
 const AddProjectModal = ({ onProjectAdded }: AddProjectProps) => {
-  // ✅ Remove isOpen and onClose
   const navigate = useNavigate();
 
   const { form, onSubmit, handleImageChange, uploading, submitting } =
@@ -62,29 +61,18 @@ const AddProjectModal = ({ onProjectAdded }: AddProjectProps) => {
   const imageFile = watch("imageUrl");
 
   return (
-    <Box padding={150}>
+    <Box paddingTop={150}>
       <GradientHeading>Add Project Here</GradientHeading>
       <Text textAlign={"center"} mt={2}>
         This Page is only visible to Admin.
       </Text>
 
       <Flex justifyContent={"center"} alignItems={"center"} marginTop={10}>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Fieldset.Root
-            size="lg"
-            minW={"4xl"}
-            bg={{
-              base: "rgba(255, 255, 255, 0.3)",
-              _dark:
-                "linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1))",
-            }}
-            backdropFilter="blur(10px)"
-            border="1px solid"
-            borderColor="rgba(255, 255, 255, 0.2)"
-            padding="20px"
-            borderRadius="10px"
-            boxShadow="0 4px 6px rgba(0, 0, 0, 0.2)"
-          >
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          style={{ minWidth: "60%", maxWidth: "100%" }}
+        >
+          <Fieldset.Root size="lg" padding="20px">
             <Stack>
               <Fieldset.Legend fontSize={24}>
                 Add Your New Creations
@@ -125,13 +113,32 @@ const AddProjectModal = ({ onProjectAdded }: AddProjectProps) => {
               </Field.Root>
 
               <Field.Root>
-                <FieldLabel>Description</FieldLabel>
+                <FieldLabel>
+                  Description{" "}
+                  <Text
+                    as="span"
+                    fontSize="sm"
+                    color="gray.500"
+                    fontWeight="normal"
+                  >
+                    (Supports Markdown)
+                  </Text>
+                </FieldLabel>
                 <Textarea
                   rows={8}
                   {...register("description")}
                   disabled={uploading}
-                  placeholder="Comment..."
+                  placeholder={`# Heading 1
+## Heading 2
+**Bold text**
+*Italic text*
+- List item 1
+- List item 2
+
+[Link text](https://example.com)`}
                   border={"1px solid gray"}
+                  fontFamily="monospace"
+                  fontSize="sm"
                 />
                 {errors.description && (
                   <Text color={"red.300"} mt={1}>
@@ -252,7 +259,7 @@ const AddProjectModal = ({ onProjectAdded }: AddProjectProps) => {
             <Flex gap={4} mt={6}>
               <Button
                 type="button"
-                onClick={() => navigate("/projects")}
+                onClick={() => navigate("/project")}
                 colorPalette={"teal"}
                 variant={"outline"}
                 disabled={submitting || uploading}

@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import AddProject from "./pages/ProjectBlog/ProjectBlog";
 import { AuthProvider } from "./context/authContext";
+import ProjectDetail from "./pages/ProjectBlog/ProjectDetails";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/add-project" element={<AddProject />} />
+              <Route path="/projects/:id" element={<ProjectDetail />} />
             </Route>
           </Routes>
         </BrowserRouter>

@@ -20,6 +20,8 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { FaApple, FaGithub } from "react-icons/fa";
+import { FcFaq } from "react-icons/fc";
 
 const Project = () => {
   const { isAuthenticated, user } = useAuth();
@@ -85,13 +87,16 @@ const Project = () => {
       <VStack mb={8}>
         <GradientHeading>Showcase</GradientHeading>
         <Text fontSize="xl" textAlign="center">
-          My Projects
+          Transforming financial complexity into elegant digital solutions
+          through code and CFA principles.
         </Text>
       </VStack>
-
+      <Text fontSize={"18px"} fontWeight={"bold"}>
+        Project work
+      </Text>
       <Grid
-        templateColumns="repeat(2, 1fr)"
-        gap={6}
+        templateColumns={{ base: "repeat(1fr)", md: "repeat(2,1fr)" }}
+        gapX={6}
         justifyContent={"center"}
         alignItems={"center"}
       >
@@ -163,13 +168,26 @@ const Project = () => {
                 </VStack>
               </Card.Body>
 
-              <Card.Footer>
-                <HStack>
-                  <Button colorPalette={"teal"} variant={"solid"}>
-                    Explore
-                  </Button>
-                </HStack>
-              </Card.Footer>
+              <Box>
+                <Box padding={4}>
+                  <Flex justifyContent={"space-between"} alignItems={"center"}>
+                    <Button
+                      as={Link}
+                      to={`/projects/${project._id}`}
+                      colorPalette={"teal"}
+                      variant={"solid"}
+                    >
+                      Explore
+                    </Button>
+
+                    <Flex gap={2}>
+                      <FaGithub />
+                      <FaApple />
+                      <FcFaq />
+                    </Flex>
+                  </Flex>
+                </Box>
+              </Box>
             </Box>
           </Card.Root>
         ))}
@@ -186,7 +204,9 @@ const Project = () => {
             <Text fontSize={"24px"} fontWeight={"bold"}>
               To Add New Project Click Below{" "}
             </Text>
-            <Text mb={5}>This button is only visible to Admin User.</Text>
+            <Text color={"cyan"} mb={5}>
+              This button is only visible to Admin User.
+            </Text>
             <Button
               as={Link}
               to="/add-project"

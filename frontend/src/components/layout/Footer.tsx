@@ -9,6 +9,7 @@ const Footer = () => {
     { path: "/pricing", label: "Pricing" },
     { path: "/services", label: "Services" },
   ];
+
   return (
     <Box as="footer" paddingTop={40} bottom={0}>
       <Flex
@@ -27,6 +28,7 @@ const Footer = () => {
           >
             Sabit Hazari
           </Heading>
+          {/* ✅ Fixed: Text and Flex are separate siblings */}
           <Text
             color={"gray.600"}
             fontSize={"sm"}
@@ -38,6 +40,18 @@ const Footer = () => {
             molestiae provident harum inventore iste ipsum autem minus quod
             facilis tempore?
           </Text>
+          {/* ✅ Moved Flex outside of Text */}
+          <Flex
+            mt={4}
+            gap={2}
+            justifyContent={{ base: "center", md: "start" }}
+            alignItems={"start"}
+          >
+            <FaInstagram size={30} cursor={"pointer"} />
+            <FaLinkedin size={30} cursor={"pointer"} />
+            <FaDiscord size={30} cursor={"pointer"} />
+            <FaTwitter size={30} cursor={"pointer"} />
+          </Flex>
         </div>
         <Flex gap={8} justifyContent={"space-between"} alignItems={"center"}>
           <Flex gap={4} flexDirection={"column"}>
@@ -86,16 +100,10 @@ const Footer = () => {
         justifyContent={"space-around"}
         alignItems={"center"}
         gap={10}
-        marginTop={10}
+        margin={10}
         flexWrap={"wrap"}
         flexDirection={{ base: "column", md: "row" }}
       >
-        <Flex gap={2} justifyContent={{ base: "center", md: "" }}>
-          <FaInstagram size={20} cursor={"pointer"} />
-          <FaLinkedin size={20} cursor={"pointer"} />
-          <FaDiscord size={20} cursor={"pointer"} />
-          <FaTwitter size={20} cursor={"pointer"} />
-        </Flex>
         <Text fontSize={"16px"} textAlign={{ base: "center" }}>
           &copy; 2025 Copy Right Reserved by Sabit Hazari
         </Text>
