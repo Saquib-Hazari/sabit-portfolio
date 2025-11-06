@@ -9,6 +9,8 @@ import Signup from "./pages/Signup";
 import AddProject from "./pages/ProjectBlog/ProjectBlog";
 import { AuthProvider } from "./context/authContext";
 import ProjectDetail from "./pages/ProjectBlog/ProjectDetails";
+import Forgotpassword from "./pages/Forgotpassword";
+import ResetPassword from "./pages/ResetPassword";
 
 const App = () => {
   return (
@@ -25,6 +27,8 @@ const App = () => {
               <Route path="/signup" element={<Signup />} />
               <Route path="/add-project" element={<AddProject />} />
               <Route path="/projects/:id" element={<ProjectDetail />} />
+              <Route path="/forgot-password" element={<Forgotpassword />} />
+              <Route path="/reset-password" element={<ResetPassword />} />{" "}
             </Route>
           </Routes>
         </BrowserRouter>

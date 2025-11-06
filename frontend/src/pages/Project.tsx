@@ -2,7 +2,7 @@ import { GradientHeading } from "@/Chakra/ui/CustomComponents";
 import { useAuth } from "@/context/authContext";
 import { api } from "@/services/api";
 import { type Project } from "@/types/projectTypes";
-import addBlogImage from "@/assets/NIck.jpg";
+import addBlogImage from "@/assets/sabit1.jpg";
 
 import {
   Badge,

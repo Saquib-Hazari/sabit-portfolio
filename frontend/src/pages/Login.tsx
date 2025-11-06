@@ -76,7 +76,14 @@ const Login = () => {
               </Fieldset.Content>
 
               <Text textDecoration={"underline"}>
-                <Link>Forgot Password?</Link>
+                <Link
+                  to="/forgot-password"
+                  style={{
+                    textDecoration: "underline",
+                  }}
+                >
+                  Forgot Password?
+                </Link>
               </Text>
 
               <Button type="submit" alignSelf="flex-start">

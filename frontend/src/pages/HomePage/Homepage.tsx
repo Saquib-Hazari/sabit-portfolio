@@ -8,7 +8,7 @@ import { Button, Flex, Image, Text } from "@chakra-ui/react";
 import Experience from "./Experience";
 import Project from "../Project";
 import FAQ from "./FAQ";
-import Nick from "@/assets/NIck.jpg";
+import Nick from "@/assets/sabit.jpg";
 
 const Homepage = () => {
   return (
