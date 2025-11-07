@@ -24,6 +24,7 @@ import { FaApple, FaGithub } from "react-icons/fa";
 import { FcFaq } from "react-icons/fc";
 
 const Project = () => {
+  const [currentPage, setCurrentPage] = useState();
   const { isAuthenticated, user } = useAuth();
   const isAdmin = user?.role === "admin";
 
@@ -86,9 +87,8 @@ const Project = () => {
     <Container paddingTop={40}>
       <VStack mb={8}>
         <GradientHeading>Showcase</GradientHeading>
-        <Text fontSize="xl" textAlign="center">
-          Transforming financial complexity into elegant digital solutions
-          through code and CFA principles.
+        <Text fontSize="xl" textAlign="center" color={"gray.400"}>
+          Financial Productivity Showcase Projects
         </Text>
       </VStack>
       <Text fontSize={"18px"} fontWeight={"bold"}>
@@ -104,7 +104,10 @@ const Project = () => {
           <Card.Root
             key={project._id}
             flexDirection="row"
-            bg={{ base: "gray.100", _dark: "gray.900" }}
+            bg={{
+              base: "gray.100",
+              _dark: "linear-gradient(180deg, #181C14, black)",
+            }}
             overflow="hidden"
             flex={"1"}
             marginTop={30}
@@ -118,7 +121,7 @@ const Project = () => {
             <Box flex="2">
               <Card.Body>
                 <Flex gap={3} justifyContent={"space-between"}>
-                  <Card.Title mb="2" fontSize="xl">
+                  <Card.Title mb="2" fontSize={{ base: "lg", md: "xl" }}>
                     {project.title || "Untitled Project"}
                   </Card.Title>
                   <Image
@@ -136,6 +139,7 @@ const Project = () => {
                   </Card.Description>
                   <Text
                     color="gray.500"
+                    fontSize={{ base: "sm", md: "lg" }}
                     css={{
                       display: "-webkit-box",
                       WebkitLineClamp: 2,
@@ -195,18 +199,32 @@ const Project = () => {
 
       {/* Add Project Button for Admin */}
       {isAuthenticated && isAdmin && projects.length > 0 && (
-        <Container marginTop={50}>
+        <Container
+          marginTop={50}
+          rounded={"10px"}
+          bg={{
+            base: "#eee",
+            _dark: "linear-gradient(90deg, #181C14 70%, black)",
+          }}
+          border={{ base: "1px solid gray", _dark: "1px solid #333" }}
+        >
           <Flex
-            justifyContent={"center"}
-            flexDirection={"column"}
+            justifyContent={"space-between"}
             alignItems={"center"}
+            padding={"10px"}
           >
-            <Text fontSize={"24px"} fontWeight={"bold"}>
-              To Add New Project Click Below{" "}
-            </Text>
-            <Text color={"cyan"} mb={5}>
-              This button is only visible to Admin User.
-            </Text>
+            <Box>
+              <Text fontSize={{ base: "18px", md: "24px" }} fontWeight={"bold"}>
+                To Add New Project Click Below{" "}
+              </Text>
+              <Text
+                fontSize={{ base: "16px", md: "18px" }}
+                mb={5}
+                color={"gray.400"}
+              >
+                This button is only visible to Admin User.
+              </Text>
+            </Box>
             <Button
               as={Link}
               to="/add-project"

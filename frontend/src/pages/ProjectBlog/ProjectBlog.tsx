@@ -85,11 +85,14 @@ const AddProjectModal = ({ onProjectAdded }: AddProjectProps) => {
 
             <Fieldset.Content>
               <Field.Root>
-                <Field.Label>Project Title</Field.Label>
+                <Field.Label marginBottom={3} fontSize={"18px"}>
+                  Project Title
+                </Field.Label>
                 <Input
                   {...register("title")}
                   disabled={uploading}
-                  border={"1px solid gray"}
+                  padding="25px 35px"
+                  bg={{ base: "gray.200", _dark: "gray.950" }}
                 />
                 {errors.title && (
                   <Text color={"red.300"} mt={1}>
@@ -103,7 +106,8 @@ const AddProjectModal = ({ onProjectAdded }: AddProjectProps) => {
                 <Input
                   {...register("subtitle")}
                   disabled={uploading}
-                  border={"1px solid gray"}
+                  padding="25px 35px"
+                  bg={{ base: "gray.200", _dark: "gray.950" }}
                 />
                 {errors.subtitle && (
                   <Text color={"red.300"} mt={1}>
@@ -128,6 +132,8 @@ const AddProjectModal = ({ onProjectAdded }: AddProjectProps) => {
                   rows={8}
                   {...register("description")}
                   disabled={uploading}
+                  padding="25px 35px"
+                  bg={{ base: "gray.200", _dark: "gray.950" }}
                   placeholder={`# Heading 1
 ## Heading 2
 **Bold text**
@@ -136,7 +142,6 @@ const AddProjectModal = ({ onProjectAdded }: AddProjectProps) => {
 - List item 2
 
 [Link text](https://example.com)`}
-                  border={"1px solid gray"}
                   fontFamily="monospace"
                   fontSize="sm"
                 />
@@ -154,7 +159,8 @@ const AddProjectModal = ({ onProjectAdded }: AddProjectProps) => {
                   {...register("link")}
                   disabled={uploading}
                   placeholder="http://www.github.com"
-                  border={"1px solid gray"}
+                  padding="25px 35px"
+                  bg={{ base: "gray.200", _dark: "gray.950" }}
                 />
                 {errors.link && (
                   <Text color={"red.300"} mt={1}>
@@ -171,7 +177,8 @@ const AddProjectModal = ({ onProjectAdded }: AddProjectProps) => {
                   onChange={handleFileChange}
                   disabled={uploading}
                   type="file"
-                  border={"1px solid gray"}
+                  padding="25px 35px"
+                  bg={{ base: "gray.200", _dark: "gray.950" }}
                 />
                 {uploading && (
                   <Text color={"blue.500"}>Uploading Image...</Text>
@@ -225,7 +232,9 @@ const AddProjectModal = ({ onProjectAdded }: AddProjectProps) => {
                 <NativeSelect.Root>
                   <NativeSelect.Field
                     {...register("techStack")}
-                    border={"1px solid gray"}
+                    disabled={uploading}
+                    padding="25px 35px"
+                    bg={{ base: "gray.200", _dark: "gray.950" }}
                   >
                     <For
                       each={[

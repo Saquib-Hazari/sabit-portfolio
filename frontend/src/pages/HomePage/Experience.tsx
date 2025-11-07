@@ -10,11 +10,22 @@ import {
 } from "@chakra-ui/react";
 
 const Experience = () => {
+  const score = ["12+", "40+", "120+", "200+"];
+  const cardTitle = ["CFA level 1", "CA", "Branding", "Logo Designer"];
+  const cardDescription = [
+    "This is the card body. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "This is the card body. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "This is the card body. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "This is the card body. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  ];
+
   return (
     <>
       <Container marginTop={40}>
         <GradientHeading>Experience</GradientHeading>
-        <Text textAlign={"center"}>My Journey in Finance & Technology</Text>
+        <Text textAlign={"center"} color={"gray.400"}>
+          My Journey in Finance & Technology
+        </Text>
         <HStack fontWeight={"bolder"} fontSize={"18px"}>
           Skills and Experiences
         </HStack>
@@ -28,118 +39,37 @@ const Experience = () => {
           gapX={6}
           marginTop={8}
         >
-          {/* Card 1 */}
-          <Card.Root
-            marginTop={"30px"}
-            bg={{ base: "gray.100", _dark: "gray.900" }}
-          >
-            <Card.Body gap="2">
-              <Avatar.Root
-                size="2xl"
-                shape="rounded"
-                bg={"cyan.900"}
-                border={"2px solid cyan"}
-              >
-                <Text fontWeight={"bolder"} color={"white"}>
-                  120+
-                </Text>
-              </Avatar.Root>
-              <Card.Title mt="2">Nue Camp</Card.Title>
-              <Card.Description>
-                This is the card body. Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit.
-              </Card.Description>
-            </Card.Body>
-            <Card.Footer justifyContent="flex-end">
-              <Button colorPalette={"teal"} variant="outline">
-                View
-              </Button>
-            </Card.Footer>
-          </Card.Root>
+          {score.map((item, index) => (
+            <Card.Root
+              key={index}
+              marginTop={"30px"}
+              bg={{
+                base: "gray.100",
+                _dark: "linear-gradient(180deg, #181C14, black)",
+              }}
+            >
+              <Card.Body gap="2">
+                <Avatar.Root
+                  size="2xl"
+                  shape="rounded"
+                  bg={"#181C14"}
+                  border={"2px solid cyan"}
+                >
+                  <Text fontWeight={"bolder"} color={"white"}>
+                    {item}
+                  </Text>
+                </Avatar.Root>
 
-          {/* Card 2 */}
-          <Card.Root marginTop={"30px"} bg={"teal"}>
-            <Card.Body gap="2">
-              <Avatar.Root
-                size="2xl"
-                shape="rounded"
-                bg={"cyan.900"}
-                border={"2px solid cyan"}
-              >
-                <Text fontWeight={"bolder"} color={"white"}>
-                  99+
-                </Text>
-              </Avatar.Root>
-              <Card.Title mt="2">Nue Camp</Card.Title>
-              <Card.Description color={"black"}>
-                This is the card body. Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit.
-              </Card.Description>
-            </Card.Body>
-            <Card.Footer justifyContent="flex-end">
-              <Button colorPalette={"teal"} variant="outline">
-                View
-              </Button>
-            </Card.Footer>
-          </Card.Root>
-
-          {/* Card 3 */}
-          <Card.Root
-            marginTop={"30px"}
-            bg={{ base: "gray.100", _dark: "gray.900" }}
-          >
-            <Card.Body gap="2">
-              <Avatar.Root
-                size="2xl"
-                shape="rounded"
-                bg={"cyan.900"}
-                border={"2px solid cyan"}
-              >
-                <Text fontWeight={"bolder"} color={"white"}>
-                  200+
-                </Text>
-              </Avatar.Root>
-              <Card.Title mt="2">Nue Camp</Card.Title>
-              <Card.Description>
-                This is the card body. Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit.
-              </Card.Description>
-            </Card.Body>
-            <Card.Footer justifyContent="flex-end">
-              <Button colorPalette={"teal"} variant="outline">
-                View
-              </Button>
-            </Card.Footer>
-          </Card.Root>
-
-          {/* Card 4 */}
-          <Card.Root
-            marginTop={"30px"}
-            bg={{ base: "gray.100", _dark: "gray.900" }}
-          >
-            <Card.Body gap="2">
-              <Avatar.Root
-                size="2xl"
-                shape="rounded"
-                bg={"cyan.900"}
-                border={"2px solid cyan"}
-              >
-                <Text fontWeight={"bolder"} color={"white"}>
-                  4+
-                </Text>
-              </Avatar.Root>
-              <Card.Title mt="2">Nue Camp</Card.Title>
-              <Card.Description>
-                This is the card body. Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit.
-              </Card.Description>
-            </Card.Body>
-            <Card.Footer justifyContent="flex-end">
-              <Button colorPalette={"teal"} variant="outline">
-                View
-              </Button>
-            </Card.Footer>
-          </Card.Root>
+                <Card.Title mt="2">{cardTitle[index]}</Card.Title>
+                <Card.Description>{cardDescription[index]}</Card.Description>
+              </Card.Body>
+              <Card.Footer justifyContent="flex-end">
+                <Button colorPalette={"teal"} variant="outline">
+                  View
+                </Button>
+              </Card.Footer>
+            </Card.Root>
+          ))}
         </Grid>
       </Container>
     </>

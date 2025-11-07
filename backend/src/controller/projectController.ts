@@ -71,11 +71,11 @@ export const deleteProject = async (req: Request, res: Response) => {
     if (!projects)
       return res.status(400).json({ message: "Project not found." });
 
-    if (projects.author?.toString() !== req.user.id.toString()) {
-      return res
-        .status(400)
-        .json({ message: "Not authorized to delete this project." });
-    }
+    // if (projects.author?.toString() !== req.user.id.toString()) {
+    //   return res
+    //     .status(400)
+    //     .json({ message: "Not authorized to delete this project." });
+    // }
     await Projects.findByIdAndDelete(req.params.id);
     res.json({ success: true, message: "Project Deleted Successful." });
   } catch (error) {

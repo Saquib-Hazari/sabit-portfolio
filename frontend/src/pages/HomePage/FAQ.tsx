@@ -36,7 +36,7 @@ const FAQ = () => {
   return (
     <Container paddingTop={40}>
       <GradientHeading>Frequently Asked Questions</GradientHeading>
-      <Text textAlign={"center"}>
+      <Text textAlign={"center"} color={"gray.400"} mt={3}>
         Some of the common Queries people may ask.
       </Text>
       <Text fontSize={"18px"} fontWeight={"bold"} mt="20px">

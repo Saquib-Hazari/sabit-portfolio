@@ -4,7 +4,7 @@ import {
   GradientBox,
   GradientHeading,
 } from "@/Chakra/ui/CustomComponents";
-import { Button, Flex, Image, Text } from "@chakra-ui/react";
+import { Button, Flex, Image, Span, Text } from "@chakra-ui/react";
 import Experience from "./Experience";
 import Project from "../Project";
 import FAQ from "./FAQ";
@@ -23,11 +23,21 @@ const Homepage = () => {
             border={"1px solid white"}
           />
           <GradientHeading>Principaled Finanacial Leadership</GradientHeading>
-          <Text textAlign={"center"} paddingX={35}>
-            Detailed analysis with strategic vision to turn complex financial
-            data into clear growth opportunities. My approach is built on
-            technical skill and a strong ethical foundation to deliver solid,
-            lasting results
+          <Text
+            textAlign={"center"}
+            width={{ base: "100%", xl: "50%", lg: "70%" }}
+            fontSize={{ base: "12px", md: "xl" }}
+            marginTop={2}
+            color={"gray.400"}
+          >
+            <Span fontWeight={"bolder"}>
+              Hi, I'm Sabit: CFA Level 1 Passed{" "}
+            </Span>
+            <br />I transform complex financial data into strategic growth
+            opportunities through detailed analysis and forward-thinking vision.
+            My approach combines technical skills with strong ethical
+            foundations to deliver sustainable results that create lasting
+            value.
           </Text>
           <Flex gap={2} marginTop={"30px"}>
             <Button colorPalette={"teal"}>My Project</Button>

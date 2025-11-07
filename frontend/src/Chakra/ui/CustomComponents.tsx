@@ -1,6 +1,5 @@
 // components/CustomComponents.tsx
 import { Box, Flex, Heading, Text, Button } from "@chakra-ui/react";
-import { useColorModeValue } from "./color-mode";
 
 interface Props {
   children: any;
@@ -9,9 +8,9 @@ interface Props {
 export const GradientBox = ({ children, ...props }: Props) => (
   <Box
     height="80vh"
-    bg="linear-gradient(180deg, white 40%, #f0f0f0)" // Light mode
+    bg="linear-gradient(180deg, white 40%, #f0f0f0)"
     _dark={{
-      bg: "linear-gradient(180deg, black 40%, rgb(1, 87, 87))", // Dark mode
+      bg: "linear-gradient(180deg, black 40%, #181C14)",
     }}
     paddingTop={150}
     {...props}
@@ -38,7 +37,7 @@ export const CenteredFlex = ({ children, ...props }: Props) => (
 export const GradientHeading = ({ children, ...props }: Props) => (
   <Heading
     fontSize={{
-      base: "35px",
+      base: "28px",
       sm: "45px",
       md: "50px",
       lg: "65px",
@@ -48,7 +47,7 @@ export const GradientHeading = ({ children, ...props }: Props) => (
     lineHeight={1.2}
     px={5}
     _dark={{
-      bg: "linear-gradient(90deg, white 40%, rgb(1, 87, 87))",
+      bg: "linear-gradient(90deg, white 20%,rgb(84, 99, 70))",
       bgClip: "text",
       color: "transparent",
     }}

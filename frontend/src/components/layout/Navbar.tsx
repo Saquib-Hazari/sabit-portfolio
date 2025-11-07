@@ -41,11 +41,13 @@ const Navbar = () => {
     setIsDrawOpen(!isDrawOpen);
   };
 
+  const name = "Sabit";
+
   return (
     <Box
       as="nav"
       py={4}
-      px={{ base: "20px", lg: "50px", md: "100px", xl: "350px" }}
+      px={{ base: "20px", lg: "50px", md: "20px", xl: "350px" }}
       position={"fixed"}
       zIndex={100}
       top={0}
@@ -65,12 +67,12 @@ const Navbar = () => {
         alignItems="center"
       >
         <Link as={RouterLink} to={"/"} fontSize={24} fontWeight={"bold"}>
-          Sabit Hazari
+          {name.toUpperCase()}
         </Link>
 
         {/* Desktop Menu */}
         <Flex
-          gap={6}
+          gap={4}
           alignItems="center"
           display={{ base: "none", md: "flex" }}
         >
@@ -81,7 +83,7 @@ const Navbar = () => {
           ))}
 
           {isAuthenticated ? (
-            <Flex gap={4} alignItems="center">
+            <Flex gap={6} alignItems="center">
               <Button
                 colorPalette="teal"
                 rounded={"100px"}
@@ -90,13 +92,7 @@ const Navbar = () => {
               >
                 {user?.name.slice(0, 1).toUpperCase()}
               </Button>
-              <Button
-                colorPalette="teal"
-                variant="outline"
-                onClick={handleLogout}
-              >
-                Logout
-              </Button>
+              <Button onClick={handleLogout}>Logout</Button>
             </Flex>
           ) : (
             <Flex gap={2}>

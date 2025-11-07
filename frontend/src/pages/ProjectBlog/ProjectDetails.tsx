@@ -16,20 +16,51 @@ import {
   Card,
   Icon,
 } from "@chakra-ui/react";
-import { FaArrowLeft, FaExternalLinkAlt, FaGithub } from "react-icons/fa";
+import {
+  FaArrowLeft,
+  FaExternalLinkAlt,
+  FaGithub,
+  FaTrash,
+} from "react-icons/fa";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { toast } from "react-toastify";
+import { useAuth } from "@/context/authContext";
 
 const ProjectDetail = () => {
   const { id } = useParams<{ id: string }>();
+  const { user, isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const [project, setProject] = useState<Project | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [deleteLoading, setDeleteLoading] = useState(false);
 
   useEffect(() => {
     fetchProject();
   }, [id]);
+
+  const handleProjectDelete = async (): Promise<void> => {
+    if (
+      !window.confirm(`Are you sure you want to delete "${project?.title}"?`)
+    ) {
+      return;
+    }
+
+    setDeleteLoading(true);
+    try {
+      await api.delete(`/api/projects/${id}`);
+      toast.success("Project Deleted Successfully!");
+      navigate("/project");
+    } catch (error) {
+      console.error("Error Deleting project", error);
+      toast.error("Failed to delete the project.");
+    } finally {
+      setDeleteLoading(false);
+    }
+  };
+
+  const canDeleteProject = isAuthenticated && user?.role === "admin";
 
   const fetchProject = async (): Promise<void> => {
     try {
@@ -76,14 +107,34 @@ const ProjectDetail = () => {
   }
 
   return (
-    <Container maxW="4xl" paddingTop={28} pb={10}>
-      {/* Back Button */}
-      <Button onClick={() => navigate("/project")} mb={6}>
-        {<Icon as={FaArrowLeft} />}Back to Projects
-      </Button>
+    <Container width={"100%"} paddingTop={28} pb={10}>
+      {/* Back Button and Delete Button */}
+      <Flex justifyContent="space-between" alignItems="center" mb={6}>
+        <Button onClick={() => navigate("/project")}>
+          {<Icon as={FaArrowLeft} />}Back to Projects
+        </Button>
 
-      <Card.Root bg={{ base: "transparent", _dark: "gray.800" }} p={6}>
-        <VStack align="stretch">
+        {canDeleteProject && (
+          <Button
+            colorPalette="red"
+            variant="outline"
+            leftIcon={<FaTrash />}
+            onClick={handleProjectDelete}
+            isLoading={deleteLoading}
+            size="sm"
+          >
+            Delete
+          </Button>
+        )}
+      </Flex>
+
+      <Box bg={{ base: "transparent", _dark: "gray.960" }} p={3}>
+        <Box
+          display={{ base: "block", sm: "block", xl: "flex" }}
+          justifyContent={"center"}
+          alignContent={"center"}
+          gap={10}
+        >
           {/* Header Section */}
           <Box>
             <Text fontSize="3xl" fontWeight="bold" mb={2}>
@@ -135,7 +186,7 @@ const ProjectDetail = () => {
               </Button>
             </HStack>
           </Box>
-
+          <Box top="0" bottom="0" width="1px" bg="gray.700" />
           {/* Project Image */}
           {project.imageUrl && (
             <Box borderRadius="lg" overflow="hidden" boxShadow="lg">
@@ -150,7 +201,7 @@ const ProjectDetail = () => {
           )}
 
           {/* Markdown Content */}
-          <Box className="markdown-content">
+          <Box className="markdown-content" width={"100%"}>
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               components={{
@@ -213,13 +264,18 @@ const ProjectDetail = () => {
                 code: ({ children }) => (
                   <Box
                     as="code"
-                    bg="gray.100"
+                    bg="gray.200"
                     color="gray.800"
                     px={2}
                     py={1}
                     borderRadius="md"
                     fontSize="0.9em"
                     fontFamily="monospace"
+                    whiteSpace="pre-wrap" // Allows wrapping
+                    wordBreak="break-word" // Breaks long words
+                    overflowWrap="break-word" // Alternative for breaking
+                    display="inline-block"
+                    maxWidth="100%" // Prevents overflow
                   >
                     {children}
                   </Box>
@@ -245,21 +301,28 @@ const ProjectDetail = () => {
           </Box>
 
           {/* Additional Info */}
-          <Card.Root variant="outline" mt={6}>
+          <Card.Root
+            variant="outline"
+            mt={6}
+            width={{ base: "100%", md: "40%" }}
+            display={"flex"}
+            justifyContent={"center"}
+            alignTracks={"center"}
+          >
             <Card.Body>
-              <VStack align="stretch">
+              <Box>
                 <Text fontWeight="bold" fontSize="lg">
                   Project Details
                 </Text>
-                <HStack justify="space-between">
+                <Box justifyContent="space-between">
                   <Text color="gray.600">Created</Text>
                   <Text>
                     {project.createdAt
                       ? new Date(project.createdAt).toLocaleDateString()
                       : "Recently"}
                   </Text>
-                </HStack>
-                {/* TODO: rendering the project details */}
+                </Box>
+
                 {project.updatedAt && (
                   <HStack justify="space-between">
                     <Text color="gray.600">Last Updated</Text>
@@ -268,11 +331,11 @@ const ProjectDetail = () => {
                     </Text>
                   </HStack>
                 )}
-              </VStack>
+              </Box>
             </Card.Body>
           </Card.Root>
-        </VStack>
-      </Card.Root>
+        </Box>
+      </Box>
     </Container>
   );
 };
