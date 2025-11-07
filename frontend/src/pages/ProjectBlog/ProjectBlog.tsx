@@ -102,7 +102,9 @@ const AddProjectModal = ({ onProjectAdded }: AddProjectProps) => {
               </Field.Root>
 
               <Field.Root>
-                <Field.Label>Subtitle</Field.Label>
+                <Field.Label fontSize={"18px"} mb={3}>
+                  Subtitle
+                </Field.Label>
                 <Input
                   {...register("subtitle")}
                   disabled={uploading}
@@ -117,7 +119,7 @@ const AddProjectModal = ({ onProjectAdded }: AddProjectProps) => {
               </Field.Root>
 
               <Field.Root>
-                <FieldLabel>
+                <FieldLabel fontSize={"18px"} mb={3}>
                   Description{" "}
                   <Text
                     as="span"
@@ -153,7 +155,9 @@ const AddProjectModal = ({ onProjectAdded }: AddProjectProps) => {
               </Field.Root>
 
               <Field.Root>
-                <FieldLabel>Project URL</FieldLabel>
+                <FieldLabel fontSize={"18px"} mb={3}>
+                  Project URL
+                </FieldLabel>
                 <Input
                   type="url"
                   {...register("link")}
@@ -170,7 +174,9 @@ const AddProjectModal = ({ onProjectAdded }: AddProjectProps) => {
               </Field.Root>
 
               <Field.Root>
-                <FieldLabel>Project Image</FieldLabel>
+                <FieldLabel fontSize={"18px"} mb={3}>
+                  Project Image
+                </FieldLabel>
                 <Input
                   ref={fileInputRef}
                   accept="image/*"
@@ -228,7 +234,9 @@ const AddProjectModal = ({ onProjectAdded }: AddProjectProps) => {
               </Field.Root>
 
               <Field.Root>
-                <Field.Label>Tech Stack</Field.Label>
+                <Field.Label fontSize={"18px"} mb={3}>
+                  Tech Stack
+                </Field.Label>
                 <NativeSelect.Root>
                   <NativeSelect.Field
                     {...register("techStack")}
