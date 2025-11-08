@@ -1,9 +1,0 @@
-# Creating the Add project form
-
-Root:
-  ☐ Setting up the database in the backend.
-  ☐ setting up the project controller with error handling.
-  ☐ Creating the routes.
-  ☐ Testing the routes using Postman.
-  ☐ Creating test cases to check the edge cases in the backend.
-
