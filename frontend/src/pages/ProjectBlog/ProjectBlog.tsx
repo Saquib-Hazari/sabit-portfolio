@@ -33,7 +33,7 @@ const AddProjectModal = ({ onProjectAdded }: AddProjectProps) => {
     useProjectForm({
       onSubmitSuccess: (project) => {
         onProjectAdded?.(project);
-        navigate("/projects");
+        navigate("/project");
       },
     });
 

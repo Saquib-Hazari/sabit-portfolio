@@ -31,10 +31,9 @@ const Login = () => {
     <>
       <GradientBox padding={150}>
         <GradientHeading>SignUp</GradientHeading>
-        <Text textAlign={"center"} marginTop={2}>
+        <Text color={"gray.500"} textAlign={"center"} marginTop={2}>
           New user SingUp
         </Text>
-
         <Flex justifyContent={"center"} alignItems={"center"} marginTop={7}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Fieldset.Root
@@ -135,6 +134,9 @@ const Login = () => {
             </Fieldset.Root>
           </form>
         </Flex>
+        <Text mt={4} fontSize={"18px"} color={"gray.500"} textAlign={"center"}>
+          Ready to Elevate Your Financial Strategy? Sign up today and gain
+        </Text>
       </GradientBox>
     </>
   );

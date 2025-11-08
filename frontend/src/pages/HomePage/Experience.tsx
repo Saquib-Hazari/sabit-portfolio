@@ -1,4 +1,5 @@
 import { GradientHeading } from "@/Chakra/ui/CustomComponents";
+import { Link } from "react-router-dom";
 import {
   Avatar,
   Button,
@@ -6,22 +7,43 @@ import {
   Container,
   Grid,
   HStack,
+  Link as link,
   Text,
 } from "@chakra-ui/react";
 
 const Experience = () => {
   const score = ["12+", "40+", "120+", "200+"];
-  const cardTitle = ["CFA level 1", "CA", "Branding", "Logo Designer"];
-  const cardDescription = [
-    "This is the card body. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    "This is the card body. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    "This is the card body. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    "This is the card body. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+
+  const services = [
+    {
+      id: "cfa",
+      title: "CFA Level 1 Expertise",
+      description:
+        "Mastering financial analysis, equity valuation, and investment principles with comprehensive CFA Level 1 knowledge to deliver data-driven insights and rigorous financial evaluation.",
+    },
+    {
+      id: "portfolio",
+      title: "Portfolio Management",
+      description:
+        "Designing sophisticated investment strategies through modern portfolio theory, asset allocation optimization, and risk management frameworks to maximize risk-adjusted returns.",
+    },
+    {
+      id: "investment",
+      title: "Investment Management",
+      description:
+        "Developing customized wealth management solutions that balance growth objectives with capital preservation using fundamental analysis and performance monitoring.",
+    },
+    {
+      id: "branding",
+      title: "Financial Branding",
+      description:
+        "Crafting compelling financial narratives and professional branding that communicates expertise and establishes strong market positioning in competitive financial landscapes.",
+    },
   ];
 
   return (
     <>
-      <Container marginTop={40}>
+      <Container marginTop={40} id="experiences">
         <GradientHeading>Experience</GradientHeading>
         <Text textAlign={"center"} color={"gray.400"}>
           My Journey in Finance & Technology
@@ -39,7 +61,7 @@ const Experience = () => {
           gapX={6}
           marginTop={8}
         >
-          {score.map((item, index) => (
+          {services.map((service, index) => (
             <Card.Root
               key={index}
               marginTop={"30px"}
@@ -56,17 +78,24 @@ const Experience = () => {
                   border={"2px solid cyan"}
                 >
                   <Text fontWeight={"bolder"} color={"white"}>
-                    {item}
+                    {score[index]}
                   </Text>
                 </Avatar.Root>
 
-                <Card.Title mt="2">{cardTitle[index]}</Card.Title>
-                <Card.Description>{cardDescription[index]}</Card.Description>
+                <Card.Title mt="2">{service.title}</Card.Title>
+                <Card.Description>{service.description}</Card.Description>
               </Card.Body>
               <Card.Footer justifyContent="flex-end">
-                <Button colorPalette={"teal"} variant="outline">
-                  View
-                </Button>
+                <Link
+                  to={`about#${service.id}`}
+                  onClick={() =>
+                    console.log("Navigate to: ", `/about#${service.id}`)
+                  }
+                >
+                  <Button colorPalette={"teal"} variant="outline">
+                    View
+                  </Button>
+                </Link>
               </Card.Footer>
             </Card.Root>
           ))}

@@ -5,13 +5,26 @@ import {
   Container,
   Flex,
   Heading,
+  List,
   Span,
   Text,
 } from "@chakra-ui/react";
 import { FaRegCheckCircle } from "react-icons/fa";
 import FAQ from "./HomePage/FAQ";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const About = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.replace("#", ""));
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
   const basicFeatures = [
     "Portfolio Health Check (One-time analysis)",
     "Basic Investment Strategy Review",
@@ -61,6 +74,69 @@ const About = () => {
     "Data-driven, analytical approach to branding",
     "Focus on building trust and credibility",
     "Experience speaking to financial audiences",
+  ];
+
+  const sections = [
+    {
+      id: "cfa",
+      title: "CFA Level 1 Expertise",
+      description:
+        "My comprehensive CFA Level 1 preparation has equipped me with deep financial expertise and analytical capabilities:",
+      points: [
+        "Financial Statement Analysis: Advanced interpretation of balance sheets, income statements, and cash flow statements",
+        "Equity Valuation: Proficient in DCF modeling, relative valuation, and asset-based approaches",
+        "Fixed Income Analysis: Expertise in bond pricing, yield calculations, duration, and credit risk assessment",
+        "Quantitative Methods: Strong foundation in statistical analysis and regression for investment decisions",
+        "Economics: Deep understanding of macroeconomic principles and global economic indicators",
+        "Ethical Standards: Commitment to CFA Institute's Code of Ethics and Professional Conduct",
+        "Portfolio Concepts: Knowledge of modern portfolio theory and risk-return tradeoffs",
+      ],
+    },
+    {
+      id: "portfolio",
+      title: "Portfolio Management",
+      description:
+        "Specialized in creating and managing optimized investment portfolios through strategic methodologies:",
+      points: [
+        "Strategic Asset Allocation: Designing frameworks based on risk tolerance and financial objectives",
+        "Modern Portfolio Theory: Applying Markowitz optimization for efficient frontiers",
+        "Risk Management: Implementing sophisticated risk frameworks and scenario analysis",
+        "Performance Measurement: Tracking using Sharpe ratio and Jensen's alpha",
+        "Rebalancing Strategies: Systematic approaches to maintain target allocations",
+        "Diversification Techniques: Building globally diversified portfolios",
+        "Tax-Efficient Investing: Structuring to minimize liabilities and maximize returns",
+      ],
+    },
+    {
+      id: "investment",
+      title: "Investment Management",
+      description:
+        "Comprehensive wealth management solutions tailored to individual and institutional client needs:",
+      points: [
+        "Wealth Planning: Personalized strategies aligned with client life goals",
+        "Fundamental Analysis: Deep company research and industry analysis",
+        "Alternative Investments: Experience with real estate and private equity",
+        "Behavioral Finance: Mitigating emotional investment decisions",
+        "Client Relationships: Building partnerships through transparent communication",
+        "Regulatory Compliance: Ensuring adherence to financial regulations",
+        "Technology Integration: Leveraging fintech for analytics and reporting",
+      ],
+    },
+    {
+      id: "branding",
+      title: "Financial Branding",
+      description:
+        "Strategic brand development and market positioning for financial professionals:",
+      points: [
+        "Professional Identity: Crafting brands that communicate expertise and trust",
+        "Digital Presence: Comprehensive online strategies and thought leadership",
+        "Content Strategy: Educational content and market insights",
+        "Client Communication: Clear frameworks that build confidence",
+        "Network Building: Strategic relationship development",
+        "Presentation Skills: Delivering complex concepts with clarity",
+        "Reputation Management: Building credibility through ethical practices",
+      ],
+    },
   ];
 
   return (
@@ -126,7 +202,63 @@ const About = () => {
         </Text>
       </Container>
 
-      <GradientHeading m={20}>Pricing</GradientHeading>
+      {/* Experiences section - Improved */}
+      <Container marginTop={20}>
+        <GradientHeading mb={10}>Detailed Expertise</GradientHeading>
+        {sections.map((section) => (
+          <Box
+            key={section.id}
+            id={section.id}
+            bg={{
+              base: "gray.100",
+              _dark: "linear-gradient(180deg, #18230F, black)",
+            }}
+            padding={"30px"}
+            rounded={"10px"}
+            mb={8}
+            border={"1px solid"}
+            borderColor={"gray.300"}
+            _dark={{ borderColor: "gray.600" }}
+          >
+            <Heading
+              fontSize={{ base: "24px", md: "28px" }}
+              fontWeight={"bolder"}
+              mb={4}
+              color={"teal.400"}
+            >
+              {section.title}
+            </Heading>
+            <Text
+              fontSize={"18px"}
+              mb={6}
+              color={"gray.600"}
+              _dark={{ color: "gray.300" }}
+            >
+              {section.description}
+            </Text>
+            <Box>
+              {section.points.map((point, index) => (
+                <Flex key={index} alignItems={"flex-start"} gap={3} mb={3}>
+                  <Box color={"teal.400"} mt={1}>
+                    <FaRegCheckCircle />
+                  </Box>
+                  <Text
+                    fontSize={"16px"}
+                    color={"gray.700"}
+                    _dark={{ color: "gray.300" }}
+                  >
+                    {point}
+                  </Text>
+                </Flex>
+              ))}
+            </Box>
+          </Box>
+        ))}
+      </Container>
+
+      <GradientHeading m={20} id="pricing">
+        Pricing
+      </GradientHeading>
       <Container
         display={{ base: "block", md: "flex" }}
         justifyContent={"center"}
@@ -361,6 +493,7 @@ const About = () => {
           </Container>
         </Box>
       </Container>
+
       <Container>
         <FAQ />
       </Container>

@@ -25,6 +25,7 @@ const Navbar = () => {
     { path: "/project", label: "Creations" },
     { path: "/about", label: "Services" },
     { path: "/contact", label: "Let's talk" },
+    { path: `/about#${"pricing"}`, label: "Pricing" },
   ];
 
   const handleLogout = async () => {

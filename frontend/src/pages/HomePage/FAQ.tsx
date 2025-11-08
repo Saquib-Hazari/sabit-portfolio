@@ -34,7 +34,7 @@ const FAQ = () => {
   };
 
   return (
-    <Container paddingTop={40}>
+    <Container paddingTop={40} id="faq">
       <GradientHeading>Frequently Asked Questions</GradientHeading>
       <Text textAlign={"center"} color={"gray.400"} mt={3}>
         Some of the common Queries people may ask.

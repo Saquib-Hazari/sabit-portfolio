@@ -6,8 +6,14 @@ const Footer = () => {
   const linkItems = [
     { path: "/about", label: "About" },
     { path: "/contact", label: "Contact" },
-    { path: "/pricing", label: "Pricing" },
-    { path: "/services", label: "Services" },
+    { path: `/about#${"pricing"}`, label: "Pricing" },
+    { path: `/about#${"section.id"}`, label: "Services" },
+  ];
+  const linkItems2 = [
+    { path: `/#${"faq"}`, label: "FAQ's" },
+    { path: "/project", label: "Projects" },
+    { path: "/contact", label: "Social" },
+    { path: `/#${"experiences"}`, label: "Experiences" },
   ];
 
   return (
@@ -36,9 +42,9 @@ const Footer = () => {
             width={{ base: "100%", md: "60%" }}
             textAlign={{ base: "center", md: "start" }}
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit
-            molestiae provident harum inventore iste ipsum autem minus quod
-            facilis tempore?
+            Interested in my services or have a project in mind? Use the contact
+            form below or connect with me on social media to discuss portfolio
+            management, investments, or financial consulting.
           </Text>
           {/* ✅ Moved Flex outside of Text */}
           <Flex
@@ -47,7 +53,7 @@ const Footer = () => {
             justifyContent={{ base: "center", md: "start" }}
             alignItems={"start"}
           >
-            <FaInstagram size={30} cursor={"pointer"} />
+            <FaInstagram size={30} cursor={"pointer"} to={"/"} />
             <FaLinkedin size={30} cursor={"pointer"} />
             <FaDiscord size={30} cursor={"pointer"} />
             <FaTwitter size={30} cursor={"pointer"} />
@@ -68,27 +74,13 @@ const Footer = () => {
             ))}
           </Flex>
           <Flex gap={4} flexDirection={"column"}>
-            {linkItems.map((item) => (
+            {linkItems2.map((item) => (
               <Link
                 key={item.path}
                 as={RouterLink}
                 to={item.path}
                 fontSize={"sm"}
                 fontWeight={"bold"}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </Flex>
-          <Flex gap={4} flexDirection={"column"}>
-            {linkItems.map((item) => (
-              <Link
-                key={item.path}
-                as={RouterLink}
-                to={item.path}
-                fontSize={"sm"}
-                fontWeight={"bold"}
-                border={"none"}
               >
                 {item.label}
               </Link>

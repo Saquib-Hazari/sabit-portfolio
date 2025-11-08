@@ -92,6 +92,9 @@ const Login = () => {
             </Fieldset.Root>
           </form>
         </Flex>
+        <Text mt={4} fontSize={"18px"} color={"gray.500"} textAlign={"center"}>
+          Already have an account? Sign in to continue your progress.
+        </Text>
       </GradientBox>
     </>
   );
