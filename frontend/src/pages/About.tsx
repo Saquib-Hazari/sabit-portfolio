@@ -218,7 +218,7 @@ const About = () => {
             mb={8}
             border={"1px solid"}
             borderColor={"gray.300"}
-            _dark={{ borderColor: "gray.600" }}
+            _dark={{ borderColor: "gray.800" }}
           >
             <Heading
               fontSize={{ base: "24px", md: "28px" }}
@@ -450,7 +450,7 @@ const About = () => {
               <Text color={"gray.400"}>AI features and Advance Analytics</Text>
               <Text
                 fontWeight={"bolder"}
-                fontSize={"35px"}
+                fontSize={"20px"}
                 marginBottom={"30px"}
               >
                 $800 + basic
