@@ -8,24 +8,24 @@ const FAQ = () => {
 
   const faqData = [
     {
-      question: "What is your return policy?",
+      question: "Why choose a CFA for branding services?",
       answer:
-        "We offer a 30-day return policy for all unused items in original packaging.",
+        "I speak your language and understand financial compliance, ensuring your brand builds trust while showcasing expertise.",
     },
     {
-      question: "How long does shipping take?",
+      question: "What's included in your branding package?",
       answer:
-        "Standard shipping takes 3-5 business days. Express shipping is 1-2 business days.",
+        "Strategic positioning, visual identity guidance, content framework, and implementation roadmap—all tailored for financial professionals.",
     },
     {
-      question: "Do you offer international shipping?",
+      question: "How long does the branding process take?",
       answer:
-        "Yes, we ship to over 50 countries worldwide. Shipping costs vary by location.",
+        "Typically 4-6 weeks, depending on complexity and your availability for collaboration.",
     },
     {
-      question: "How can I track my order?",
+      question: "Do you work with financial firms or individual professionals?",
       answer:
-        "You'll receive a tracking number via email once your order ships.",
+        "Both! I serve individual financial advisors, wealth managers, and institutional firms seeking to enhance their market positioning.",
     },
   ];
 

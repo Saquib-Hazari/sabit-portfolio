@@ -12,13 +12,47 @@ import { FaRegCheckCircle } from "react-icons/fa";
 import FAQ from "./HomePage/FAQ";
 
 const About = () => {
-  const charges = [
-    "UI/Ux desing",
-    "Branding",
-    "Portfolio Management",
-    "Full end to end dev",
-    "Figma desing",
-    "More than 5 revisions",
+  const basicFeatures = [
+    "Portfolio Health Check (One-time analysis)",
+    "Basic Investment Strategy Review",
+    "Financial Goal Setting Session (30 mins)",
+    "Market Outlook Summary Report",
+    "Email Support (5 queries/month)",
+    "Educational Resources Access",
+  ];
+
+  const premiumFeatures = [
+    "Everything in Basic, plus:",
+    "Monthly Portfolio Rebalancing",
+    "Custom Investment Strategy",
+    "Quarterly Performance Reviews",
+    "Tax Optimization Strategies",
+    "Risk Management Framework",
+    "Direct WhatsApp Support",
+    "Monthly Market Insights Report",
+    "Financial Dashboard Access",
+  ];
+
+  const enterpriseFeatures = [
+    "Everything in Premium, plus:",
+    "Dedicated CFA Advisor",
+    "Weekly Strategy Sessions",
+    "Advanced Tax Planning",
+    "Estate Planning Consultation",
+    "Business Financial Consulting",
+    "Custom Financial Modeling",
+    "Priority 24/7 Support",
+    "Family Office Services",
+    "Exclusive Investment Opportunities",
+  ];
+  const proPlusFeatures = [
+    "Everything in Basic & Premium, plus:",
+    "Advanced Portfolio Analytics",
+    "Quarterly In-Person Strategy Sessions",
+    "24/7 Dedicated Advisor Line",
+    "Custom Financial Dashboard",
+    "Exclusive Research Reports",
+    "CFA Charterholder Direct Access",
   ];
 
   const keySkills = [
@@ -29,18 +63,6 @@ const About = () => {
     "Experience speaking to financial audiences",
   ];
 
-  const premiumCharges = [
-    "UI/Ux desing",
-    "Branding",
-    "Portfolio Management",
-    "Full end to end dev",
-    "Figma desing",
-    "More than 5 revisions",
-    "React js",
-    "Node and express.js",
-    "Typescirpt",
-    "jacaScript",
-  ];
   return (
     <>
       <Container paddingTop={"150px"}>
@@ -50,11 +72,10 @@ const About = () => {
           fontWeight={"bolder"}
           mb={6}
           mt={20}
-          color={"gray.200"}
         >
           💼 Portfolio Management
         </Heading>
-        <Text fontSize={"18px"} color={"gray.400"}>
+        <Text fontSize={"18px"}>
           As a CFA charterholder, I bring world-class financial expertise to
           clients across the globe. The CFA designation represents the highest
           standard in investment analysis, ethical practice, and financial
@@ -68,11 +89,10 @@ const About = () => {
           fontWeight={"bolder"}
           mb={6}
           mt={10}
-          color={"gray.200"}
         >
           💻 Strategic Brand Development for Financial Professionals
         </Heading>
-        <Text fontSize={"18px"} color={"gray.400"}>
+        <Text fontSize={"18px"}>
           I provide unique branding solutions specifically designed for
           financial professionals. I understand the regulatory landscape, client
           expectations, and competitive dynamics of the financial industry. My
@@ -85,11 +105,10 @@ const About = () => {
           fontWeight={"bolder"}
           mb={6}
           mt={10}
-          color={"gray.200"}
         >
           🤝 Building Trust-Based Brands for Financial Excellence
         </Heading>
-        <Text fontSize={"18px"} color={"gray.400"}>
+        <Text fontSize={"18px"}>
           In finance, trust is your most valuable asset. I help financial
           professionals and firms build brands that communicate competence,
           integrity, and results. Using my CFA-trained analytical approach, I
@@ -97,16 +116,10 @@ const About = () => {
           strategically sound—creating authentic connections with clients and
           stakeholders while driving business growth.
         </Text>
-        <Heading
-          fontSize={"35px"}
-          fontWeight={"bolder"}
-          mb={6}
-          mt={10}
-          color={"gray.200"}
-        >
+        <Heading fontSize={"35px"} fontWeight={"bolder"} mb={6} mt={10}>
           Key Skills:
         </Heading>
-        <Text marginLeft={4} fontSize={"18px"} color={"gray.400"}>
+        <Text marginLeft={4} fontSize={"18px"}>
           {keySkills.map((item) => (
             <li key={item}>{item}</li>
           ))}
@@ -118,6 +131,7 @@ const About = () => {
         display={{ base: "block", md: "flex" }}
         justifyContent={"center"}
         alignItems={"center"}
+        height={"70vh"}
         gap={6}
       >
         <Box
@@ -127,6 +141,7 @@ const About = () => {
           mb={4}
           border={"1px solid #333"}
           width={"100%"}
+          minHeight={"100%"}
           transition="all 0.2s ease-in-out"
           _hover={{
             transform: "scale(1.02)",
@@ -147,12 +162,14 @@ const About = () => {
             </Span>
           </Text>
           <Flex
+            flex={1}
             flexDirection={"column"}
-            justifyContent={"center"}
+            justifyContent={"space-between"}
             alignItems={"start"}
             gap={4}
+            height={"100%"}
           >
-            {charges.map((charge) => (
+            {basicFeatures.map((charge) => (
               <Flex
                 key={charge}
                 justifyContent={"center"}
@@ -163,10 +180,10 @@ const About = () => {
                 <Text>{charge}</Text>
               </Flex>
             ))}
+            <Button marginTop={"auto"} width="100%">
+              Contact
+            </Button>
           </Flex>
-          <Button marginTop={10} width="100%">
-            Contact
-          </Button>
         </Box>
         <Box
           bg={{
@@ -178,6 +195,7 @@ const About = () => {
           mb={4}
           border={"1px solid #333"}
           width={"100%"}
+          height={"100%"}
           transition="all 0.2s ease-in-out"
           _hover={{
             transform: "scale(1.02)",
@@ -203,7 +221,7 @@ const About = () => {
             alignItems={"start"}
             gap={4}
           >
-            {charges.map((charge) => (
+            {premiumFeatures.map((charge) => (
               <Flex
                 key={charge}
                 justifyContent={"center"}
@@ -225,6 +243,7 @@ const About = () => {
           rounded={"10px"}
           border={"1px solid #333"}
           width={"100%"}
+          height={"100%"}
           mb={4}
           transition="all 0.2s ease-in-out"
           _hover={{
@@ -251,7 +270,7 @@ const About = () => {
             alignItems={"start"}
             gap={4}
           >
-            {charges.map((charge) => (
+            {enterpriseFeatures.map((charge) => (
               <Flex
                 key={charge}
                 justifyContent={"center"}
@@ -294,7 +313,7 @@ const About = () => {
           >
             <Box width={"30%"}>
               <Text fontWeight={"bolder"} fontSize={"25px"}>
-                Pro + Advance
+                Basic + Pro Advance
               </Text>
               <Text color={"gray.400"}>AI features and Advance Analytics</Text>
               <Text
@@ -302,7 +321,7 @@ const About = () => {
                 fontSize={"35px"}
                 marginBottom={"30px"}
               >
-                $800
+                $800 + basic
                 <Span fontSize={"20px"} color={"gray.400"}>
                   /month
                 </Span>
@@ -314,7 +333,7 @@ const About = () => {
               width={{ base: "30%", md: "40%" }}
               gap={4}
             >
-              {charges.map((charge) => (
+              {proPlusFeatures.map((charge) => (
                 <Flex
                   key={charge}
                   justifyContent={"center"}
@@ -335,12 +354,7 @@ const About = () => {
             />
             <Text fontSize={"35px"}>
               Custom Connection
-              <Button
-                variant={"surface"}
-                colorPalette={"gray"}
-                marginTop={10}
-                width="100%"
-              >
+              <Button marginTop={10} width="100%">
                 Contact
               </Button>
             </Text>

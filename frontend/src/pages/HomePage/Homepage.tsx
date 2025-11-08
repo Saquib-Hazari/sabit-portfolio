@@ -4,7 +4,7 @@ import {
   GradientBox,
   GradientHeading,
 } from "@/Chakra/ui/CustomComponents";
-import { Button, Flex, Image, Span, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, Span, Text } from "@chakra-ui/react";
 import Experience from "./Experience";
 import Project from "../Project";
 import FAQ from "./FAQ";
@@ -15,13 +15,22 @@ const Homepage = () => {
     <>
       <GradientBox>
         <CenteredFlex>
-          <Image
-            src={Nick}
-            width={"100px"}
-            height={"100px"}
-            rounded={"full"}
-            border={"1px solid white"}
-          />
+          <Box
+            p={2}
+            bg="linear-gradient(90deg, teal, black)"
+            borderRadius="full"
+            boxShadow="lg"
+            blur={"10px"}
+          >
+            <Image
+              src={Nick}
+              width={"100px"}
+              height={"100px"}
+              rounded={"full"}
+              border={"2px solid white"}
+              boxShadow="inner"
+            />
+          </Box>
           <GradientHeading>Principaled Finanacial Leadership</GradientHeading>
           <Text
             textAlign={"center"}
