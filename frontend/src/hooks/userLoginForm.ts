@@ -23,29 +23,35 @@ export const useLoginForm = () => {
 
     try {
       const response = await api.post("/users/api/login", data);
+      console.log("🔍 Full response:", response);
+      console.log("🔍 Response data:", response.data);
+      console.log("🔍 Token:", response.data.token);
+
       const { user, token } = response.data;
 
-      // Store token in localStorage
+      // Debug localStorage
+      console.log("💾 Before storing - token:", token);
       localStorage.setItem("token", token);
+      console.log(
+        "💾 After storing - localStorage:",
+        localStorage.getItem("token")
+      );
 
       const userData = {
-        id: user.id, // Use user from destructured response
+        id: user.id,
         email: user.email,
         name: user.name,
         role: user.role,
       };
 
-      login(userData);
+      login(userData, token);
       toast.success("Login Successful!");
       navigate("/");
-
-      return response.data;
     } catch (error: any) {
       const errorMessage =
         error.response?.data?.message || "Login failed, Please try again.";
 
       toast.error(errorMessage);
-      throw error;
     } finally {
       setIsLoading(false);
     }
