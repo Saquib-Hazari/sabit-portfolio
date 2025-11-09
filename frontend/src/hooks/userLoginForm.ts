@@ -32,7 +32,7 @@ export const useLoginForm = () => {
       login(userData);
       toast.success("Login Successful!");
       navigate("/");
-      window.location.reload();
+      // window.location.reload();
 
       return response.data;
     } catch (error: any) {
