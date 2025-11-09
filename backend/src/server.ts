@@ -9,19 +9,27 @@ dotenv.config();
 const app = express();
 connectedDB();
 
+console.log("🚀 BACKEND STARTED - CORS Configuration:");
+console.log("Origin:", process.env.FRONTEND_URL);
+console.log("Timestamp:", new Date().toISOString());
+
 app.use(
   cors({
-    origin: "https://sabit-portfolio-sigma.vercel.app",
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: [
-      "Content-Type",
-      "Authorization",
-      "Accept",
-      "X-Requested-With",
+    origin: [
+      "https://sabit-portfolio-sigma.vercel.app",
+      "https://sabit-portfolio-sigma.vercel.app/",
+      "http://localhost:5174",
     ],
+    credentials: true,
   })
 );
+// methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+// allowedHeaders: [
+//   "Content-Type",
+//   "Authorization",
+//   "Accept",
+//   "X-Requested-With",
+// ],
 
 app.use(cookieParser());
 app.use(express.json());
