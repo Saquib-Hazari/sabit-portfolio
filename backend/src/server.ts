@@ -11,7 +11,7 @@ connectedDB();
 
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:5174/login",
+    origin: process.env.FRONTEND_URL,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: [
@@ -35,7 +35,7 @@ app.use("/users/api", userRouter);
 app.use("/api/projects", projectRouter);
 
 // Current port
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 app.listen(port, () => {
   console.log(`Listening to Port ${port}`);
 });

@@ -18,14 +18,14 @@ export default defineConfig(({ mode }) => {
       __APP_ENV__: JSON.stringify(env.APP_ENV),
     },
     // Optional: Development server proxy for API calls
-    server: {
-      proxy: {
-        "/api": {
-          target: env.VITE_API_URL || "http://localhost:3001",
-          changeOrigin: true,
-          secure: false,
-        },
-      },
-    },
+    // server: {
+    //   proxy: {
+    //     "/api": {
+    //       target: env.VITE_API_BASE_URL,
+    //       changeOrigin: true,
+    //       secure: false,
+    //     },
+    //   },
+    // },
   };
 });
