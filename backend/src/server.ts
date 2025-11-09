@@ -21,15 +21,15 @@ app.use(
       "http://localhost:5174",
     ],
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+      "Accept",
+      "X-Requested-With",
+    ],
   })
 );
-// methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-// allowedHeaders: [
-//   "Content-Type",
-//   "Authorization",
-//   "Accept",
-//   "X-Requested-With",
-// ],
 
 app.use(cookieParser());
 app.use(express.json());
