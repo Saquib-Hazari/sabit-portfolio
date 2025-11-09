@@ -24,7 +24,6 @@ import { FaApple, FaGithub } from "react-icons/fa";
 import { FcFaq } from "react-icons/fc";
 
 const Project = () => {
-  const [currentPage, setCurrentPage] = useState();
   const { isAuthenticated, user } = useAuth();
   const isAdmin = user?.role === "admin";
 

@@ -23,16 +23,21 @@ export const useLoginForm = () => {
 
     try {
       const response = await api.post("/users/api/login", data);
+      const { user, token } = response.data;
+
+      // Store token in localStorage
+      localStorage.setItem("token", token);
+
       const userData = {
-        id: response.data.user.id,
-        email: response.data.user.email,
-        name: response.data.user.name,
-        role: response.data.user.role,
+        id: user.id, // Use user from destructured response
+        email: user.email,
+        name: user.name,
+        role: user.role,
       };
+
       login(userData);
       toast.success("Login Successful!");
       navigate("/");
-      // window.location.reload();
 
       return response.data;
     } catch (error: any) {

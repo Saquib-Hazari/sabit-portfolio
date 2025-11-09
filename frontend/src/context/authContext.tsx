@@ -10,7 +10,7 @@ interface User {
 
 interface AuthContextType {
   user: User | null;
-  login: (userData: User) => void;
+  login: (userData: User, token: string) => void; // Add token parameter
   logout: () => void;
   isAuthenticated: boolean;
 }
@@ -26,16 +26,27 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   useEffect(() => {
     const checkAuthStatus = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        setUser(null);
+        return;
+      }
+
       try {
         const response = await api.get("/users/api/is-auth");
         setUser(response.data.user);
-      } catch (error) {}
+      } catch (error) {
+        // If token is invalid, clear it
+        localStorage.removeItem("token");
+        setUser(null);
+      }
     };
     checkAuthStatus();
   }, []);
 
-  const login = (userData: User) => {
+  const login = (userData: User, token: string) => {
     setUser(userData);
+    localStorage.setItem("token", token); // Store token
   };
 
   const logout = async () => {
@@ -45,6 +56,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       console.error("Logout error", error);
     } finally {
       setUser(null);
+      localStorage.removeItem("token"); // Remove token
     }
   };
 
@@ -55,7 +67,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     isAuthenticated: !!user,
   };
 
-  return <AuthContext.Provider value={value}> {children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {

@@ -1,4 +1,3 @@
-// Creating user signup form
 import { useAuth } from "@/context/authContext";
 import { registerSchema, type RegisterFormData } from "@/schema/authSchema";
 import { api } from "@/services/api";
@@ -16,15 +15,19 @@ export const userSignupForm = () => {
   const methods = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
   });
+
   const onSubmit = async (data: RegisterFormData) => {
     setIsLoading(true);
 
     try {
       const response = await api.post("/users/api/register", data);
-      login(response.data.user);
+      const { user, token } = response.data; // Get token from response
+
+      // Pass both user data AND token to login
+      login(user, token);
 
       toast.success("Account created Successfully!");
-      navigate("/login");
+      navigate("/"); // Redirect to home instead of login
     } catch (error: any) {
       const errorMessage =
         error.response?.data?.message || "Signup failed, Please try again";

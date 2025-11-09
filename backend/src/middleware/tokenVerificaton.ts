@@ -30,13 +30,24 @@ export const Authentication = async (
   next: NextFunction
 ) => {
   try {
-    const token = req.cookies?.token;
+    // Get token from Authorization header instead of cookies
+    const authHeader = req.headers.authorization;
 
-    if (!token)
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return res.status(401).json({
         success: false,
-        message: "Access token required Please login.",
+        message: "Access token required. Please login.",
       });
+    }
+
+    const token = authHeader.split(" ")[1]; // Get token after "Bearer "
+
+    if (!token) {
+      return res.status(401).json({
+        success: false,
+        message: "Access token required. Please login.",
+      });
+    }
 
     // Verify token
     const decoded = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload;
@@ -49,14 +60,18 @@ export const Authentication = async (
 
     next();
   } catch (error: any) {
-    res.status(500).json({ success: false, message: "Internal Server Error." });
-    // handle errors
-    if (error.name === "JsonWebTokenError")
+    // Handle errors
+    if (error.name === "JsonWebTokenError") {
       return res.status(401).json({ success: false, message: "Invalid Token" });
-    if (error.name === "TokenExpiredError")
+    }
+    if (error.name === "TokenExpiredError") {
       return res.status(401).json({
         success: false,
-        message: "Token expired. Please login agian.",
+        message: "Token expired. Please login again.",
       });
+    }
+
+    console.error("Auth middleware error:", error);
+    res.status(500).json({ success: false, message: "Internal Server Error." });
   }
 };

@@ -43,14 +43,34 @@ class AuthUserController {
         password: hashedPassword,
       });
 
+      // Generate token for auto-login after registration
+      const token = jwt.sign(
+        {
+          id: user._id.toString(),
+          name: user.name,
+          email: user.email,
+          role: user.role,
+        },
+        process.env.JWT_SECRET!,
+        { expiresIn: "7d" }
+      );
+
       const emailHtml = `<div>Registration Successful!</div>
-      <p>Your registration with email id: ${user.email} is successful.</p>`;
+    <p>Your registration with email id: ${user.email} is successful.</p>`;
 
       await sendEmail(user.email, "New Registeration: Portfolio", emailHtml);
 
       res.status(201).json({
         success: true,
         message: "Registered user successfully!",
+        user: {
+          id: user._id,
+          name: user.name,
+          email: user.email,
+          role: user.role,
+          accountVerify: user.accountVerify,
+        },
+        token: token, // ← Add token here
       });
     } catch (error: any) {
       console.error("Registration error:", error);
@@ -105,15 +125,6 @@ class AuthUserController {
         { expiresIn: "7d" }
       );
 
-      res.cookie("token", token, {
-        httpOnly: true,
-        secure: true,
-        sameSite: "none",
-        partitioned: true,
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-        path: "/",
-      });
-
       res.status(200).json({
         success: true,
         message: "Login successful!",
@@ -124,6 +135,7 @@ class AuthUserController {
           role: user.role,
           accountVerify: user.accountVerify,
         },
+        token: token,
       });
     } catch (error: any) {
       console.error("Login error:", error);
@@ -133,14 +145,8 @@ class AuthUserController {
       });
     }
   };
-
   public logout = async (req: Request, res: Response): Promise<void> => {
     try {
-      res.clearCookie("token", {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "none",
-      });
       res.status(200).json({
         success: true,
         message: "Logged out successfully!",
