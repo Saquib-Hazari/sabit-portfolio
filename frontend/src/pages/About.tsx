@@ -210,8 +210,8 @@ const About = () => {
             key={section.id}
             id={section.id}
             bg={{
-              base: "gray.100",
-              _dark: "linear-gradient(180deg, #18230F, black)",
+              base: "linear-gradient(180deg, #ccc, #eee)",
+              _dark: "linear-gradient(180deg, #333, black)",
             }}
             padding={"30px"}
             rounded={"10px"}
@@ -262,8 +262,7 @@ const About = () => {
       <Container
         display={{ base: "block", md: "flex" }}
         justifyContent={"center"}
-        alignItems={"center"}
-        height={"70vh"}
+        alignItems={"start"}
         gap={6}
       >
         <Box
@@ -273,7 +272,7 @@ const About = () => {
           mb={4}
           border={"1px solid #333"}
           width={"100%"}
-          minHeight={"100%"}
+          minHeight={"45rem"}
           transition="all 0.2s ease-in-out"
           _hover={{
             transform: "scale(1.02)",
@@ -312,10 +311,10 @@ const About = () => {
                 <Text>{charge}</Text>
               </Flex>
             ))}
-            <Button marginTop={"auto"} width="100%">
-              Contact
-            </Button>
           </Flex>
+          <Button marginTop={"30px"} width="100%">
+            Contact
+          </Button>
         </Box>
         <Box
           bg={{
@@ -327,7 +326,7 @@ const About = () => {
           mb={4}
           border={"1px solid #333"}
           width={"100%"}
-          height={"100%"}
+          height={"45rem"}
           transition="all 0.2s ease-in-out"
           _hover={{
             transform: "scale(1.02)",
@@ -375,7 +374,7 @@ const About = () => {
           rounded={"10px"}
           border={"1px solid #333"}
           width={"100%"}
-          height={"100%"}
+          height={"45rem"}
           mb={4}
           transition="all 0.2s ease-in-out"
           _hover={{
