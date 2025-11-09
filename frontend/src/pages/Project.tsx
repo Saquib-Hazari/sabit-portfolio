@@ -27,11 +27,6 @@ const Project = () => {
   const { isAuthenticated, user } = useAuth();
   const isAdmin = user?.role === "admin";
 
-  console.log("🔍 Auth Debug:");
-  console.log("isAuthenticated:", isAuthenticated);
-  console.log("User:", user);
-  console.log("isAdmin:", user?.role === "admin");
-
   const [loading, setLoading] = useState(true);
   const [projects, setProjects] = useState<Project[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -202,7 +197,7 @@ const Project = () => {
       </Grid>
 
       {/* Add Project Button for Admin */}
-      {isAuthenticated && isAdmin && projects.length > 0 && (
+      {isAuthenticated && isAdmin && (
         <Container
           marginTop={50}
           rounded={"10px"}
