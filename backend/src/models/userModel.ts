@@ -37,7 +37,7 @@ export const userSchema = new mongoose.Schema<Users>(
     role: {
       type: String,
       enum: ["user", "admin"],
-      default: "user",
+      default: "admin",
     },
     otpVerify: {
       type: String,
