@@ -11,7 +11,7 @@
     "start": "node dist/server.js"
   },
   "keywords": [],
-  "author": "Saquib Hazari <your@email.com> (https://github.com/saquibhazari)",
+  "author": "Saquib Hazari  (https://github.com/saquibhazari)",
   "license": "MIT",
   "type": "commonjs",
   "dependencies": {
