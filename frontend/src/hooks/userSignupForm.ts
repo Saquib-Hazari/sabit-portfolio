@@ -24,9 +24,7 @@ export const userSignupForm = () => {
       login(response.data.user);
 
       toast.success("Account created Successfully!");
-      setTimeout(() => {
-        navigate("/login");
-      }, 2000);
+      navigate("/login");
     } catch (error: any) {
       const errorMessage =
         error.response?.data?.message || "Signup failed, Please try again";
