@@ -29,8 +29,8 @@ const Login = () => {
   } = methods;
   return (
     <>
-      <GradientBox padding={150}>
-        <GradientHeading>SignUp</GradientHeading>
+      <GradientBox minHeight={"110vh"} padding={130}>
+        <GradientHeading fontSize={"45px"}>SignUp</GradientHeading>
         <Text color={"gray.500"} textAlign={"center"} marginTop={2}>
           New user SingUp
         </Text>

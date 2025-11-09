@@ -15,8 +15,8 @@ const Login = () => {
 
   return (
     <>
-      <GradientBox padding={150}>
-        <GradientHeading>Login</GradientHeading>
+      <GradientBox height={"100vh"} padding={150}>
+        <GradientHeading fontSize={"45px"}>Login</GradientHeading>
         <Text textAlign={"center"} color={"gray"} fontSize={18} marginTop={4}>
           Authentication for Admin and Moderators
         </Text>
