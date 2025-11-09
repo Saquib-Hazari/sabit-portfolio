@@ -21,13 +21,12 @@ export const userSignupForm = () => {
 
     try {
       const response = await api.post("/users/api/register", data);
-      const { user, token } = response.data; // Get token from response
+      const { user, token } = response.data;
 
-      // Pass both user data AND token to login
-      login(user, token);
+      await login(user, token);
 
       toast.success("Account created Successfully!");
-      navigate("/"); // Redirect to home instead of login
+      navigate("/");
     } catch (error: any) {
       const errorMessage =
         error.response?.data?.message || "Signup failed, Please try again";

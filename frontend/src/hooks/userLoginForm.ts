@@ -23,19 +23,10 @@ export const useLoginForm = () => {
 
     try {
       const response = await api.post("/users/api/login", data);
-      console.log("🔍 Full response:", response);
-      console.log("🔍 Response data:", response.data);
-      console.log("🔍 Token:", response.data.token);
 
       const { user, token } = response.data;
 
-      // Debug localStorage
-      console.log("💾 Before storing - token:", token);
       localStorage.setItem("token", token);
-      console.log(
-        "💾 After storing - localStorage:",
-        localStorage.getItem("token")
-      );
 
       const userData = {
         id: user.id,
