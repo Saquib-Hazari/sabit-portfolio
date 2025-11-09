@@ -152,13 +152,11 @@ const About = () => {
           💼 Portfolio Management
         </Heading>
         <Text fontSize={"18px"}>
-          As a CFA charterholder, I bring world-class financial expertise to
-          clients across the globe. The CFA designation represents the highest
-          standard in investment analysis, ethical practice, and financial
-          leadership. I provide sophisticated financial solutions that combine
-          rigorous analytical frameworks with practical business insights to
-          help organizations navigate complex market challenges and capitalize
-          on emerging opportunities.
+          As a financial professional, I deliver comprehensive financial
+          expertise to clients worldwide. I specialize in creating sophisticated
+          solutions that blend analytical rigor with practical business
+          strategies, enabling organizations to navigate complex market
+          challenges and capitalize on emerging opportunities.
         </Text>
         <Heading
           fontSize={{ base: "24px", md: "35px" }}

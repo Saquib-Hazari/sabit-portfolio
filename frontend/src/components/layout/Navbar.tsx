@@ -47,8 +47,8 @@ const Navbar = () => {
   return (
     <Box
       as="nav"
-      py={4}
-      px={{ base: "20px", lg: "50px", md: "20px", xl: "350px" }}
+      py={2}
+      px={{ base: "20px", lg: "50px", md: "20px", xl: "100px" }}
       position={"fixed"}
       zIndex={100}
       top={0}
@@ -57,7 +57,7 @@ const Navbar = () => {
       <Flex
         justifyContent={"space-between"}
         gap={8}
-        p={4}
+        p={3}
         bg={{
           base: "rgba(0, 0, 0, 0.1)",
           _dark: "rgba(255, 255, 255, 0.1)",
