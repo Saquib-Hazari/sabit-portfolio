@@ -11,7 +11,7 @@ connectedDB();
 
 app.use(
   cors({
-    origin: "https://sabit-portfolio.onrender.com",
+    origin: "https://sabit-portfolio-sigma.vercel.app",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: [
