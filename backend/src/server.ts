@@ -17,8 +17,8 @@ app.use(
     allowedHeaders: [
       "Content-Type",
       "Authorization",
-      // "Accept",
-      // "X-Requested-With",
+      "Accept",
+      "X-Requested-With",
     ],
   })
 );
